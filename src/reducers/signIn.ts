@@ -3,13 +3,15 @@ import { knownAction } from "../actions/signIn";
 
 export const initialState = {
   isLoading: false,
-  data: "",
+  token: "",
+  username: "",
   error: "",
 };
 
 export interface SignInState {
   isLoading: boolean;
-  data: string;
+  token: string;
+  username: string;
   error: string;
 }
 
@@ -24,9 +26,14 @@ export const reducer: Reducer<SignInState> = (
   const action = incomingAction as knownAction;
   switch (action.type) {
     case "SIGN_IN_REQUEST":
-      return { ...state, isLoading: true, error: "", data: "" };
+      return { ...state, isLoading: true, error: "" };
     case "SIGN_IN_RECEIVE":
-      return { ...state, data: action.data, isLoading: false };
+      return {
+        ...state,
+        token: action.token,
+        username: action.username,
+        isLoading: false,
+      };
     case "SIGN_IN_REQUEST_FAILED":
       return { ...state, isLoading: false, error: action.error };
     default:

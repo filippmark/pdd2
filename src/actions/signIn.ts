@@ -9,7 +9,8 @@ export interface SignInRequest {
 
 export interface SignInReceive {
   type: "SIGN_IN_RECEIVE";
-  data: string;
+  token: string;
+  username: string;
 }
 
 export interface SignInRequestFailed {
@@ -29,7 +30,7 @@ export const actionCreators = {
       try {
         const response = await axios.post(endpoint + "auth/signIn", userData);
         console.log(response);
-        dispatch({ type: "SIGN_IN_RECEIVE", data: "2123" });
+        dispatch({ type: "SIGN_IN_RECEIVE", token: "2123", username: "" });
       } catch (error) {
         console.log(error);
         dispatch({

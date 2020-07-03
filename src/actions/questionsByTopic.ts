@@ -2,7 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { endpoint } from "..";
 import { ApplicationState } from "../reducers/index";
-import { TopicQeustion } from "../types/topic";
+import { TopicQuestion } from "../types/topic";
 
 export interface TopicQuestionsRequest {
   type: "TOPIC_QUESTIONS_REQUEST";
@@ -10,7 +10,7 @@ export interface TopicQuestionsRequest {
 
 export interface TopicQuestionsReceive {
   type: "TOPIC_QUESTIONS_RECEIVE";
-  topics: TopicQeustion[];
+  topics: TopicQuestion[];
 }
 
 export interface TopicQuestionsRequestFailed {
@@ -24,7 +24,7 @@ export type knownAction =
   | TopicQuestionsReceive;
 
 export const actionCreators = {
-  getTopics: (topicId: number): any => {
+  getQuestionsByTopic: (topicId: number): any => {
     return async (
       dispatch: Dispatch<knownAction>,
       getState: () => ApplicationState

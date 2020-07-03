@@ -23,11 +23,39 @@ export interface SetJwtToken {
   token: string;
 }
 
-export type knownAction = SignInReceive | SignInRequest | SignInRequestFailed | SetJwtToken;
+export interface VerifyJwtTokenRequest {
+  type: "VERIFY_JWT_TOKEN_REQUEST"
+}
+
+export interface VerifyJwtTokenRequestFailed {
+  type: "VERIFY_JWT_TOKEN_REQUEST_FAILED",
+  verifyError: string;
+}
+
+export type knownAction = SignInReceive | SignInRequest | SignInRequestFailed | SetJwtToken | VerifyJwtTokenRequest | VerifyJwtTokenRequestFailed;
 
 export const actionCreators = {
   setToken: (token: string) => ({ type: "SET_JWT_TOKEN", token }),
-  signIn: (userData: { username: string; password: string }): any => {
+  verifyToken: (token: string) => {
+    return async (
+      dispatch: Dispatch<knownAction>,
+      getState: () => ApplicationState
+    ) => {
+      dispatch({ type: "VERIFY_JWT_TOKEN_REQUEST" });
+      try {
+        const response = await axios.get(endpoint + `auth/verify/${token}`);
+        console.log(response);
+        dispatch({ type: "SET_JWT_TOKEN", token});
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "VERIFY_JWT_TOKEN_REQUEST_FAILED",
+          verifyError: error.response.status,
+        });
+      }
+    };
+  },
+  signIn: (userData: { username: string; password: string }) => {
     return async (
       dispatch: Dispatch<knownAction>,
       getState: () => ApplicationState

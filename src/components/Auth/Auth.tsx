@@ -1,6 +1,6 @@
 import React from "react";
-import SignUp from "../SignUp/SignUp";
-import SignIn from "../SignIn/SignIn";
+import SignUp from "./SignUp/SignUp";
+import SignIn from "./SignIn/SignIn";
 import { NavLink } from "react-router-dom";
 import "./Auth.css";
 

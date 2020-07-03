@@ -4,12 +4,25 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
+import { Provider } from "react-redux";
+import { initialState as questionsTopicsInit } from "./reducers/questionsByTopic";
+import { initialState as topicsInit } from "./reducers/topics";
+import { initialState as signInInit } from "./reducers/signIn";
+import { initialState as signUpInit } from "./reducers/signUp";
+import configureStore from "./reducers/configStore";
 
-export const endpoint = "https://kolesa-app.herokuapp.com/";
+const store = configureStore({
+  signIn: signInInit,
+  signUp: signUpInit,
+  topics: topicsInit,
+  questionsTopics: questionsTopicsInit,
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
@@ -18,3 +31,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+export const endpoint = "https://kolesa-app.herokuapp.com/";

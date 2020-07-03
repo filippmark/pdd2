@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Input, FormGroup, Button } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../actions/signUp";
 import "./SignUp.css";
 

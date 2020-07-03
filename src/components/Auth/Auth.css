@@ -35,3 +35,7 @@
     color: black;
     border-color: #6FDAA5;
 }
+
+.auth__link-active:hover{
+    color: black;
+}

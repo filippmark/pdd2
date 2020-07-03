@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input, FormGroup, Button } from "reactstrap";
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators } from "../../actions/signUp";
 import "./SignUp.css";
 
 function SignUp() {
@@ -10,7 +11,7 @@ function SignUp() {
     password: "",
     password2: "",
   });
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -21,7 +22,15 @@ function SignUp() {
     });
   }
 
-  function registerNewUser(event: React.MouseEvent<any, MouseEvent>) {}
+  function registerNewUser(event: React.MouseEvent<any, MouseEvent>) {
+    dispatch(
+      actionCreators.signUp({
+        email: formState.email,
+        username: formState.username,
+        password: formState.password,
+      })
+    );
+  }
 
   return (
     <React.Fragment>
@@ -40,6 +49,7 @@ function SignUp() {
           name="username"
           placeholder="Ваше имя"
           onChange={handleInput}
+          invalid={!!formState.username && formState.username.length < 5}
         ></Input>
       </FormGroup>
       <FormGroup>

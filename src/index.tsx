@@ -5,6 +5,8 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 
+export const endpoint = "https://kolesa-app.herokuapp.com/";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

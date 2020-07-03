@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Input, FormGroup, Button } from "reactstrap";
+import { actionCreators } from "../../actions/signIn";
 import "./SignIn.css";
+import { useDispatch } from "react-redux";
 
 function SignIn() {
   const [formState, setForm] = useState({
-    email: "",
     username: "",
     password: "",
-    password2: "",
   });
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -20,7 +20,9 @@ function SignIn() {
     });
   }
 
-  function signIn(event: React.MouseEvent<any, MouseEvent>) {}
+  function signIn(event: React.MouseEvent<any, MouseEvent>) {
+    dispatch(actionCreators.signIn(formState));
+  }
 
   return (
     <React.Fragment>
@@ -28,7 +30,7 @@ function SignIn() {
         <Input
           type="text"
           name="username"
-          placeholder="Электронная почта"
+          placeholder="Ваше имя"
           onChange={handleInput}
         ></Input>
       </FormGroup>
@@ -36,13 +38,12 @@ function SignIn() {
         <Input
           type="password"
           name="password"
-          placeholder="Ваше имя"
+          placeholder="Пароль"
           onChange={handleInput}
         ></Input>
       </FormGroup>
       <Button className="sign-up__btn" color="success" onClick={signIn}>
-        {" "}
-        Войти{" "}
+        Войти
       </Button>
     </React.Fragment>
   );

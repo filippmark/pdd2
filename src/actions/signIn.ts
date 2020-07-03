@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { endpoint } from "..";
+import { ApplicationState } from "../reducers/index";
 
 export interface SignInRequest {
   type: "SIGN_IN_REQUEST";

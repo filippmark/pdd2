@@ -32,6 +32,7 @@ function SignIn() {
           name="username"
           placeholder="Ваше имя"
           onChange={handleInput}
+          value={formState.username}
         ></Input>
       </FormGroup>
       <FormGroup>
@@ -40,6 +41,7 @@ function SignIn() {
           name="password"
           placeholder="Пароль"
           onChange={handleInput}
+          value={formState.password}
         ></Input>
       </FormGroup>
       <Button className="sign-up__btn" color="success" onClick={signIn}>

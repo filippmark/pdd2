@@ -41,6 +41,7 @@ function SignUp() {
           placeholder="Электронная почта"
           onChange={handleInput}
           invalid={!!formState.email}
+          value={formState.email}
         ></Input>
       </FormGroup>
       <FormGroup>
@@ -50,6 +51,7 @@ function SignUp() {
           placeholder="Ваше имя"
           onChange={handleInput}
           invalid={!!formState.username && formState.username.length < 5}
+          value={formState.username}
         ></Input>
       </FormGroup>
       <FormGroup>
@@ -58,6 +60,7 @@ function SignUp() {
           name="password"
           placeholder="Пароль"
           onChange={handleInput}
+          value={formState.password}
         ></Input>
       </FormGroup>
       <FormGroup>
@@ -66,6 +69,7 @@ function SignUp() {
           name="password2"
           placeholder="Повторите пароль"
           onChange={handleInput}
+          value={formState.password2}
         ></Input>
       </FormGroup>
       <FormGroup>

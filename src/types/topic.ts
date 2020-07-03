@@ -5,7 +5,7 @@ export interface Topic {
   name: string;
 }
 
-export interface TopicQeustion {
+export interface TopicQuestion {
   id: number;
   answers: Answer[];
   answersCount: number;

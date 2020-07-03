@@ -25,6 +25,8 @@ export const reducer: Reducer<SignInState> = (
 
   const action = incomingAction as knownAction;
   switch (action.type) {
+    case "SET_JWT_TOKEN":
+      return { ...state, token: action.token };
     case "SIGN_IN_REQUEST":
       return { ...state, isLoading: true, error: "" };
     case "SIGN_IN_RECEIVE":

@@ -18,9 +18,15 @@ export interface SignInRequestFailed {
   error: string;
 }
 
-export type knownAction = SignInReceive | SignInRequest | SignInRequestFailed;
+export interface SetJwtToken {
+  type: "SET_JWT_TOKEN";
+  token: string;
+}
+
+export type knownAction = SignInReceive | SignInRequest | SignInRequestFailed | SetJwtToken;
 
 export const actionCreators = {
+  setToken: (token: string) => ({ type: "SET_JWT_TOKEN", token }),
   signIn: (userData: { username: string; password: string }): any => {
     return async (
       dispatch: Dispatch<knownAction>,

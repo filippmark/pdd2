@@ -6,6 +6,7 @@ import "./SignUp.css";
 
 function SignUp() {
   const [formState, setForm] = useState({
+    phone: "",
     email: "",
     username: "",
     password: "",
@@ -25,6 +26,7 @@ function SignUp() {
   function registerNewUser(event: React.MouseEvent<any, MouseEvent>) {
     dispatch(
       actionCreators.signUp({
+        phone: formState.phone,
         email: formState.email,
         username: formState.username,
         password: formState.password,
@@ -34,6 +36,16 @@ function SignUp() {
 
   return (
     <React.Fragment>
+      <FormGroup className="sign-up">
+        <Input
+          type="text"
+          name="phone"
+          placeholder="Телефон"
+          onChange={handleInput}
+          invalid={!!formState.phone}
+          value={formState.phone}
+        ></Input>
+      </FormGroup>
       <FormGroup className="sign-up">
         <Input
           type="text"

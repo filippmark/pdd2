@@ -1,0 +1,22 @@
+.tests {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tests__list {
+  margin-top: 100px;
+  width: 400px;
+  height: 650px;
+}
+
+ul .tests__item {
+  display: flex;
+  justify-content: center;
+}
+
+.test__navitem {
+  list-style: none;
+}

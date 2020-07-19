@@ -32,12 +32,12 @@ export const actionCreators = {
       dispatch({ type: "TOPIC_QUESTIONS_REQUEST" });
       try {
         const response = await axios.get(
-          endpoint + `questions/topics/${topicId}`
+          endpoint + `questions/topic/${topicId}/random`
         );
         console.log(response);
         dispatch({
           type: "TOPIC_QUESTIONS_RECEIVE",
-          topics: response.data.questions,
+          topics: response.data,
         });
       } catch (error) {
         console.log(error);

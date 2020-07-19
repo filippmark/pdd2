@@ -21,6 +21,7 @@ export type knownAction = SignUpRequest | SignUpRequestFailed | SignUpReceive;
 
 export const actionCreators = {
   signUp: (userData: {
+    phone: string;
     email: string;
     username: string;
     password: string;
@@ -30,15 +31,15 @@ export const actionCreators = {
       getState: () => ApplicationState
     ) => {
       dispatch({ type: "SIGN_UP_REQUEST" });
+      console.log(userData);
       try {
         const response = await axios.post(endpoint + "auth/signUp", userData);
         console.log(response);
         dispatch({ type: "SIGN_UP_RECEIVE", data: "2123" });
       } catch (error) {
-        console.log(error);
         dispatch({
           type: "SIGN_UP_REQUEST_FAILED",
-          error: error.response.status,
+          error: error.response?.status,
         });
       }
     };

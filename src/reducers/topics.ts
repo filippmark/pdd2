@@ -25,7 +25,7 @@ export const reducer: Reducer<TopicsState> = (
   const action = incomingAction as knownAction;
   switch (action.type) {
     case "TOPICS_REQUEST":
-      return { ...state, isLoading: true, error: "", topics: [] };
+      return { ...state, isLoading: true, error: "" };
     case "TOPICS_RECEIVE":
       return { ...state, topics: action.topics, isLoading: false };
     case "TOPICS_REQUEST_FAILED":

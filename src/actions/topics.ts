@@ -30,7 +30,7 @@ export const actionCreators = {
       try {
         const response = await axios.get(endpoint + "topics");
         console.log(response);
-        dispatch({ type: "TOPICS_RECEIVE", topics: response.data.topics });
+        dispatch({ type: "TOPICS_RECEIVE", topics: response.data });
       } catch (error) {
         console.log(error);
         dispatch({

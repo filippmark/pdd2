@@ -1,14 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./components/Global/Navbar/Navbar";
+import Nav from "./components/Global/Navbar/Navbar";
 import Auth from "./components/Auth/Auth";
+import Topics from "./components/Topics/Topics";
+import Tests from "./components/Tests/Tests";
+import TopicTest from "./components/TopicTest/TopicTest";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <Navbar></Navbar>
+      <Nav></Nav>
       <div className="app">
         <Switch>
           <Route
@@ -18,6 +21,16 @@ function App() {
           <Route
             path="/sign-up"
             render={() => <Auth logIn={false}></Auth>}
+          ></Route>
+          <Route path="/tests" render={() => <Tests></Tests>}></Route>
+          <Route
+            exact
+            path="/tests-topics"
+            render={() => <Topics></Topics>}
+          ></Route>
+          <Route
+            path="/tests-topics/:topicId"
+            render={(props) => <TopicTest {...props}></TopicTest>}
           ></Route>
         </Switch>
       </div>

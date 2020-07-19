@@ -29,12 +29,14 @@ export const reducer: Reducer<QuestionSTopicState> = (
     case "TOPIC_QUESTIONS_RECEIVE":
       return {
         ...state,
-        questionsTopics: state.questionsTopics.concat([
-          {
-            topicId: action.topics[0].topicId,
-            questionsTopic: action.topics,
-          },
-        ]),
+        questionsTopics: !!action.topics.length
+          ? state.questionsTopics.concat([
+              {
+                topicId: action.topics[0].topicId,
+                questionsTopic: action.topics,
+              },
+            ])
+          : [...state.questionsTopics],
         isLoading: false,
       };
     case "TOPIC_QEUSTIONS_REQUEST_FAILED":

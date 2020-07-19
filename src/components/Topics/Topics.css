@@ -1,0 +1,15 @@
+.topics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topics__list {
+  margin-top: 50px;
+  width: 400px;
+  height: 600px;
+}
+
+.topics__navitem {
+  list-style: none;
+}

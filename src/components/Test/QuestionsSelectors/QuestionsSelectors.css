@@ -1,0 +1,22 @@
+.questions-selectors {
+  width: 25%;
+}
+
+.questions-selectors__list {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.questions-selectors__item {
+  list-style: none;
+}
+
+.questions-selectors__item {
+  width: 100%;
+}

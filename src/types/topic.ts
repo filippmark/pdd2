@@ -5,6 +5,11 @@ export interface Topic {
   name: string;
 }
 
+export interface TextId {
+  id: number;
+  text: string;
+}
+
 export interface TopicQuestion {
   id: number;
   answers: Answer[];
@@ -12,4 +17,10 @@ export interface TopicQuestion {
   linkToImage: string;
   text: string;
   topicId: number;
+  paragraph: {
+    articles: TextId[];
+    chapter: TextId;
+    id: number;
+    text: string;
+  } | null;
 }

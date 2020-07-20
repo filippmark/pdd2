@@ -1,0 +1,8 @@
+.question-selector {
+  margin: 10px 0 10px 10px;
+  width: 100%;
+}
+
+.question-selector:first-child {
+  margin-top: 0px;
+}

@@ -19,7 +19,7 @@ export default function Test(props: {
   return (
     <div className="test">
       <QuestionsSelectors questions={props.questions} currentQuestion={currentQuestion}></QuestionsSelectors>
-      <QuestionBody></QuestionBody>
+      <QuestionBody  question={props.questions ? props.questions.questionsTopic[currentQuestion] : null}></QuestionBody>
     </div>
   );
 }

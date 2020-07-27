@@ -1,3 +1,32 @@
 .question-body {
-  width: 65%;
+  width: 70%;
+  margin-left: 5%;
+}
+
+.question-body__text {
+  height: 10%;
+}
+
+.question-body__image-wrapper {
+  width: 100%;
+  margin: 20px 0;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-body__image {
+  height: 100%;
+}
+
+.question-body__answers {
+  height: 20%;
+}
+
+.question-body__answers button {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  height: 8%;
 }

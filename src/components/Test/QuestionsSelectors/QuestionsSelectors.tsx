@@ -10,15 +10,18 @@ export default function QuestionsSelectors(props: {
         questionsTopic: TopicQuestion[];
       }
     | undefined;
+  currentQuestion: number;
 }) {
-  console.log(props);
   return (
     <div className="questions-selectors">
       <ul className="questions-selectors__list">
         {props.questions?.questionsTopic.map(
           (question: TopicQuestion, index: number) => (
             <li key={question.id} className="questions-selectors__item">
-              <QuestionSelector questionNumber={index}></QuestionSelector>
+              <QuestionSelector
+                currentQuestion={props.currentQuestion}
+                questionNumber={index}
+              ></QuestionSelector>
             </li>
           )
         )}

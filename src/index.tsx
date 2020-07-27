@@ -9,6 +9,7 @@ import { initialState as questionsTopicsInit } from "./reducers/questionsByTopic
 import { initialState as topicsInit } from "./reducers/topics";
 import { initialState as signInInit } from "./reducers/signIn";
 import { initialState as signUpInit } from "./reducers/signUp";
+import { initialState as testInit } from "./reducers/test";
 import configureStore from "./reducers/configStore";
 
 const store = configureStore({
@@ -16,6 +17,7 @@ const store = configureStore({
   signUp: signUpInit,
   topics: topicsInit,
   questionsTopics: questionsTopicsInit,
+  test: testInit,
 });
 
 ReactDOM.render(

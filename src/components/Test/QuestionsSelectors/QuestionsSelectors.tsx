@@ -21,6 +21,7 @@ export default function QuestionsSelectors(props: {
               <QuestionSelector
                 currentQuestion={props.currentQuestion}
                 questionNumber={index}
+                question={question}
               ></QuestionSelector>
             </li>
           )

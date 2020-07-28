@@ -11,7 +11,14 @@ export interface AddAnswerToQuestion {
   };
 }
 
-export type knownAction = SetCurrentQuestion | AddAnswerToQuestion;
+export interface DestroyTestResult {
+  type: "DESTROY_TEST_DATA";
+}
+
+export type knownAction =
+  | SetCurrentQuestion
+  | AddAnswerToQuestion
+  | DestroyTestResult;
 
 export const actionCreators = {
   setCurrentQuestion: (questionNumber: number) => ({
@@ -21,5 +28,8 @@ export const actionCreators = {
   addAnswerToQuestion: (answer: { answerId: number; questionId: number }) => ({
     type: "ADD_ANSWER_TO_QUESTION",
     answer,
+  }),
+  destroyTestResult: () => ({
+    type: "DESTROY_TEST_DATA",
   }),
 };

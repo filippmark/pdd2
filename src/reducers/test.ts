@@ -31,6 +31,12 @@ export const reducer: Reducer<TestState> = (
         ...state,
         anwersQuestions: state.anwersQuestions.concat([action.answer]),
       };
+    case "DESTROY_TEST_DATA":
+      return {
+        ...state,
+        anwersQuestions: [],
+        currentQuestion: 0,
+      };
     default:
       return state;
   }

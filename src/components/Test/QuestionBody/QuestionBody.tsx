@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FormGroup, Button } from "reactstrap";
 import "./QuestionBody.css";
 import { TopicQuestion } from "../../../types/topic";
 import { Answer } from "../../../types/answer";
 import { actionCreators } from "../../../actions/test";
+import { ApplicationState } from "../../../reducers";
 
 export default function QuestionBody(props: {
   question: TopicQuestion | null;
 }) {
-  const [selectedAnswer, setSelectedAnswer] = useState(-1);
+  const answerId: number | undefined = useSelector(
+    (state: ApplicationState) => {
+      const answerQuestion = state.test.anwersQuestions.find(
+        (val: { answerId: number; questionId: number }) =>
+          val.questionId === props.question?.id
+      );
+      return answerQuestion?.answerId;
+    }
+  );
   const dispatch = useDispatch();
 
   function handleAnswerSelect(event: React.MouseEvent<any, MouseEvent>) {
     const answerIndex = parseInt(event.currentTarget.id);
-    setSelectedAnswer(answerIndex);
     dispatch(
       actionCreators.addAnswerToQuestion({
         answerId: props.question!.answers[answerIndex].id,
@@ -22,10 +30,6 @@ export default function QuestionBody(props: {
       })
     );
   }
-
-  useEffect(() => {
-    setSelectedAnswer(-1);
-  }, [props.question]);
 
   return (
     <div className="question-body">
@@ -44,9 +48,9 @@ export default function QuestionBody(props: {
           {props.question?.answers.map((answer: Answer, index: number) => {
             let color = "primary";
             let outline = false;
-            if (selectedAnswer !== -1) {
+            if (answerId) {
               outline = true;
-              if (index === selectedAnswer) {
+              if (answer.id === answerId) {
                 color = answer.correct ? "success" : "danger";
                 outline = false;
               } else if (answer.correct) {
@@ -59,11 +63,10 @@ export default function QuestionBody(props: {
                 key={answer.id}
                 id={index.toString()}
                 name="question-answer"
-                label={answer.text}
                 onClick={handleAnswerSelect}
                 color={color}
                 outline={outline}
-                disabled={selectedAnswer !== -1}
+                disabled={!!answerId}
               >
                 {answer.text}
               </Button>

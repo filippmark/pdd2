@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { FormGroup, Button, CustomInput } from "reactstrap";
+import { FormGroup, Button } from "reactstrap";
 import "./QuestionBody.css";
 import { TopicQuestion } from "../../../types/topic";
 import { Answer } from "../../../types/answer";
+import { actionCreators } from "../../../actions/test";
 
 export default function QuestionBody(props: {
   question: TopicQuestion | null;
 }) {
   const [selectedAnswer, setSelectedAnswer] = useState(-1);
+  const dispatch = useDispatch();
 
   function handleAnswerSelect(event: React.MouseEvent<any, MouseEvent>) {
-    setSelectedAnswer(parseInt(event.currentTarget.id));
+    const answerIndex = parseInt(event.currentTarget.id);
+    setSelectedAnswer(answerIndex);
+    dispatch(
+      actionCreators.addAnswerToQuestion({
+        answerId: props.question!.answers[answerIndex].id,
+        questionId: props.question!.id,
+      })
+    );
   }
 
   useEffect(() => {

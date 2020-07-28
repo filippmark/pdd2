@@ -7,6 +7,7 @@ import Tests from "./components/Tests/Tests";
 import TopicTest from "./components/TopicTest/TopicTest";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import Chapters from "./components/Chapters/Chapters";
 
 function App() {
   return (
@@ -23,6 +24,11 @@ function App() {
             render={() => <Auth logIn={false}></Auth>}
           ></Route>
           <Route path="/tests" render={() => <Tests></Tests>}></Route>
+          <Route
+            exact
+            path="/tests-chapters"
+            render={() => <Chapters></Chapters>}
+          ></Route>
           <Route
             exact
             path="/tests-topics"

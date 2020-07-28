@@ -15,10 +15,27 @@ export interface DestroyTestResult {
   type: "DESTROY_TEST_DATA";
 }
 
+export interface SetTestStartDate {
+  type: "SET_TEST_START_DATE";
+  date: Date;
+}
+
+export interface SetTestEndDate {
+  type: "SET_TEST_END_DATE";
+  date: Date;
+}
+
+export interface ShowHint {
+  type: "SHOW_HINT";
+}
+
 export type knownAction =
   | SetCurrentQuestion
   | AddAnswerToQuestion
-  | DestroyTestResult;
+  | DestroyTestResult
+  | SetTestStartDate
+  | SetTestEndDate
+  | ShowHint;
 
 export const actionCreators = {
   setCurrentQuestion: (questionNumber: number) => ({
@@ -31,5 +48,16 @@ export const actionCreators = {
   }),
   destroyTestResult: () => ({
     type: "DESTROY_TEST_DATA",
+  }),
+  setTestStartDate: () => ({
+    type: "SET_TEST_START_DATE",
+    date: new Date(),
+  }),
+  setTestEndDate: (date: Date) => ({
+    type: "SET_TEST_END_DATE",
+    date,
+  }),
+  showHint: () => ({
+    type: "SHOW_HINT",
   }),
 };

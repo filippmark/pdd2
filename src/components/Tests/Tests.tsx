@@ -17,7 +17,7 @@ export default function Tests() {
           </ListGroupItem>
           <ListGroupItem className="tests__item" tag="button" action>
             <NavItem className="test__navitem">
-              <NavLink tag={Link} className="text-dark" to="/">
+              <NavLink tag={Link} className="text-dark" to="/tests-chapters">
                 Тренирока по главам по ПДД
               </NavLink>
             </NavItem>

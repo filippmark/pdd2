@@ -10,6 +10,7 @@ import { initialState as topicsInit } from "./reducers/topics";
 import { initialState as signInInit } from "./reducers/signIn";
 import { initialState as signUpInit } from "./reducers/signUp";
 import { initialState as testInit } from "./reducers/test";
+import { initialState as chaptersInit } from "./reducers/chapters";
 import configureStore from "./reducers/configStore";
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
   topics: topicsInit,
   questionsTopics: questionsTopicsInit,
   test: testInit,
+  chapters: chaptersInit,
 });
 
 ReactDOM.render(

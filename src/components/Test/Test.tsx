@@ -21,6 +21,7 @@ export default function Test(props: {
   );
 
   useEffect(() => {
+    dispatch(actionCreators.setTestStartDate());
     return () => {
       dispatch(actionCreators.destroyTestResult());
     };

@@ -29,13 +29,23 @@ export interface ShowHint {
   type: "SHOW_HINT";
 }
 
+export interface SetControl {
+  type: "SET_CONTROL";
+}
+
+export interface IncreaseAmountOfErrors {
+  type: "INCREASE_AMOUNT_OF_ERRORS";
+}
+
 export type knownAction =
   | SetCurrentQuestion
   | AddAnswerToQuestion
   | DestroyTestResult
   | SetTestStartDate
   | SetTestEndDate
-  | ShowHint;
+  | ShowHint
+  | SetControl
+  | IncreaseAmountOfErrors;
 
 export const actionCreators = {
   setCurrentQuestion: (questionNumber: number) => ({
@@ -59,5 +69,11 @@ export const actionCreators = {
   }),
   showHint: () => ({
     type: "SHOW_HINT",
+  }),
+  setControl: () => ({
+    type: "SET_CONTROL",
+  }),
+  increaseAmountOfErrors: () => ({
+    type: "INCREASE_AMOUNT_OF_ERRORS",
   }),
 };

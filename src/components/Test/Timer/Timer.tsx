@@ -32,7 +32,7 @@ export default function Timer() {
   }, [dispatch, endDate]);
 
   return (
-    <div>
+    <div className="timer">
       {remainingTime && (
         <h5>
           {`${remainingTime.getMinutes()} : ${remainingTime.getSeconds()}`}

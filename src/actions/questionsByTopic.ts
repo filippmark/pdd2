@@ -18,12 +18,18 @@ export interface TopicQuestionsRequestFailed {
   error: string;
 }
 
+export interface RemoveQuestionsByTopic {
+  type: "REMOVE_QUESTIONS_BY_TOPIC";
+}
+
 export type knownAction =
   | TopicQuestionsRequest
   | TopicQuestionsRequestFailed
-  | TopicQuestionsReceive;
+  | TopicQuestionsReceive
+  | RemoveQuestionsByTopic;
 
 export const actionCreators = {
+  removeQuestionsByTopic: () => ({ type: "REMOVE_QUESTIONS_BY_TOPIC" }),
   getQuestionsByTopic: (topicId: number): any => {
     return async (
       dispatch: Dispatch<knownAction>,

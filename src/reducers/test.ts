@@ -7,6 +7,8 @@ export const initialState = {
   dateStart: null,
   dateEnd: null,
   showHint: false,
+  controlMode: false,
+  amountOfErrors: 0,
 };
 
 export interface TestState {
@@ -18,6 +20,8 @@ export interface TestState {
   dateStart: Date | null;
   dateEnd: Date | null;
   showHint: boolean;
+  controlMode: boolean;
+  amountOfErrors: number;
 }
 
 export const reducer: Reducer<TestState> = (
@@ -43,6 +47,8 @@ export const reducer: Reducer<TestState> = (
         anwersQuestions: [],
         currentQuestion: 0,
         dateStart: null,
+        showHint: false,
+        controlMode: false,
       };
     case "SET_TEST_START_DATE":
       return {
@@ -59,6 +65,16 @@ export const reducer: Reducer<TestState> = (
       return {
         ...state,
         showHint: true,
+      };
+    case "SET_CONTROL":
+      return {
+        ...state,
+        controlMode: true,
+      };
+    case "INCREASE_AMOUNT_OF_ERRORS":
+      return {
+        ...state,
+        amountOfErrors: ++state.amountOfErrors,
       };
     default:
       return state;

@@ -11,6 +11,7 @@ export interface TextId {
 }
 
 export interface TopicQuestion {
+  endTime: string;
   id: number;
   answers: Answer[];
   answersCount: number;

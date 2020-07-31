@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FormGroup, Button } from "reactstrap";
 import "./QuestionBody.css";
@@ -19,7 +19,23 @@ export default function QuestionBody(props: {
       return answerQuestion?.answerId;
     }
   );
+  const showHint = useSelector(
+    (state: ApplicationState) => state.test.showHint
+  );
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (showHint) {
+      dispatch(
+        actionCreators.addAnswerToQuestion({
+          answerId: props.question!.answers.find((val: Answer) => val.correct)!
+            .id,
+          questionId: props.question!.id,
+        })
+      );
+    }
+  }, [dispatch, props.question, showHint]);
 
   function handleAnswerSelect(event: React.MouseEvent<any, MouseEvent>) {
     const answerIndex = parseInt(event.currentTarget.id);

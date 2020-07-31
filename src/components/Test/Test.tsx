@@ -19,6 +19,18 @@ export default function Test(props: {
   const currentQuestion = useSelector(
     (state: ApplicationState) => state.test.currentQuestion
   );
+  const isControlMode = useSelector(
+    (state: ApplicationState) => state.test.controlMode
+  );
+  const amountOfErrors = useSelector(
+    (state: ApplicationState) => state.test.amountOfErrors
+  );
+
+  useEffect(() => {
+    if (isControlMode && amountOfErrors === 2) {
+      console.log("waste");
+    }
+  }, [amountOfErrors, isControlMode]);
 
   useEffect(() => {
     dispatch(actionCreators.setTestStartDate());

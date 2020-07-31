@@ -3,6 +3,7 @@ import QuestionSelector from "./QuestionSelector/QuestionSelector";
 import { TopicQuestion } from "../../../types/topic";
 import "./QuestionsSelectors.css";
 import Timer from "../Timer/Timer";
+import Hint from "../Hint/Hint";
 
 export default function QuestionsSelectors(props: {
   questions:
@@ -16,7 +17,10 @@ export default function QuestionsSelectors(props: {
   return (
     <div className="questions-selectors">
       <ul className="questions-selectors__list">
-        <Timer></Timer>
+        <div className="questions-selectors__controllers">
+          <Timer></Timer>
+          <Hint questions={props.questions}></Hint>
+        </div>
         {props.questions?.questionsTopic.map(
           (question: TopicQuestion, index: number) => (
             <li key={question.id} className="questions-selectors__item">

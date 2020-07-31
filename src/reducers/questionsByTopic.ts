@@ -41,6 +41,8 @@ export const reducer: Reducer<QuestionSTopicState> = (
       };
     case "TOPIC_QEUSTIONS_REQUEST_FAILED":
       return { ...state, isLoading: false, error: action.error };
+    case "REMOVE_QUESTIONS_BY_TOPIC":
+      return { ...state, isLoading: false, questionsTopics: [] };
     default:
       return state;
   }

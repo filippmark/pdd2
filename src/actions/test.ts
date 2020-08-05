@@ -37,6 +37,10 @@ export interface IncreaseAmountOfErrors {
   type: "INCREASE_AMOUNT_OF_ERRORS";
 }
 
+export interface SetTestFinished {
+  type: "SET_TEST_FINISHED"
+}
+
 export type knownAction =
   | SetCurrentQuestion
   | AddAnswerToQuestion
@@ -45,7 +49,8 @@ export type knownAction =
   | SetTestEndDate
   | ShowHint
   | SetControl
-  | IncreaseAmountOfErrors;
+  | IncreaseAmountOfErrors
+  | SetTestFinished;
 
 export const actionCreators = {
   setCurrentQuestion: (questionNumber: number) => ({
@@ -76,4 +81,7 @@ export const actionCreators = {
   increaseAmountOfErrors: () => ({
     type: "INCREASE_AMOUNT_OF_ERRORS",
   }),
+  setTestFinished: () => ({
+    type: "SET_TEST_FINISHED"
+  })
 };

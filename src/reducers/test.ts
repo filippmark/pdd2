@@ -9,6 +9,7 @@ export const initialState = {
   showHint: false,
   controlMode: false,
   amountOfErrors: 0,
+  isTestFinished: false
 };
 
 export interface TestState {
@@ -22,6 +23,7 @@ export interface TestState {
   showHint: boolean;
   controlMode: boolean;
   amountOfErrors: number;
+  isTestFinished: boolean;
 }
 
 export const reducer: Reducer<TestState> = (
@@ -41,6 +43,11 @@ export const reducer: Reducer<TestState> = (
         ...state,
         anwersQuestions: state.anwersQuestions.concat([action.answer]),
       };
+    case "SET_TEST_FINISHED":
+      return {
+        ...state,
+        isTestFinished: true
+      }
     case "DESTROY_TEST_DATA":
       return {
         ...state,
@@ -49,6 +56,8 @@ export const reducer: Reducer<TestState> = (
         dateStart: null,
         showHint: false,
         controlMode: false,
+        amountOfErrors: 0,
+        isTestFinished: false
       };
     case "SET_TEST_START_DATE":
       return {

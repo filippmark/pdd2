@@ -16,10 +16,15 @@ export interface SaveUserAnswersRequestFailed {
   error: string;
 }
 
+export interface ReturnStartState{
+  type: "RETURN_START_STATE"
+}
+
 export type knownAction =
   | SaveUserAnswersReceive
   | SaveUserAnswersRequest
-  | SaveUserAnswersRequestFailed;
+  | SaveUserAnswersRequestFailed
+  | ReturnStartState;
 
 export const actionCreators = {
   saveUserAnswers: (answersForQuestions: {
@@ -32,7 +37,7 @@ export const actionCreators = {
     ) => {
       dispatch({ type: "SAVE_USER_ANSWERS_REQUEST" });
       try {
-        const response = await axios.get(endpoint + `controls/random`);
+        const response = await axios.post(endpoint + `controls/random`, answersForQuestions);
         console.log(response);
         dispatch({
           type: "SAVE_USER_ANSWERS_RECEIVE",
@@ -46,4 +51,5 @@ export const actionCreators = {
       }
     };
   },
+  returnStartState: () => ({type: "RETURN_START_STATE"})
 };

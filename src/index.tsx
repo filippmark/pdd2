@@ -11,6 +11,10 @@ import { initialState as signInInit } from "./reducers/signIn";
 import { initialState as signUpInit } from "./reducers/signUp";
 import { initialState as testInit } from "./reducers/test";
 import { initialState as chaptersInit } from "./reducers/chapters";
+import { initialState as questionsChaptersInit } from "./reducers/questionsByChapter";
+import { initialState as questionsControlInit } from "./reducers/questionsForControl";
+import { initialState as questionsRandomControlInit } from "./reducers/questionsRandomForControl";
+import {initialState as saveUserAnswersInit} from "./reducers/saveUserAnswers";
 import configureStore from "./reducers/configStore";
 
 const store = configureStore({
@@ -20,6 +24,10 @@ const store = configureStore({
   questionsTopics: questionsTopicsInit,
   test: testInit,
   chapters: chaptersInit,
+  questionsChapters: questionsChaptersInit,
+  questionsControl: questionsControlInit,
+  questionsRandomControl: questionsRandomControlInit,
+  saveUserAnswers: saveUserAnswersInit
 });
 
 ReactDOM.render(

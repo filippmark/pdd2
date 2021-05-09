@@ -11,6 +11,7 @@ export interface ChapterQuestionsRequest {
 export interface ChapterQuestionsReceive {
   type: "CHAPTER_QUESTIONS_RECEIVE";
   topics: TopicQuestion[];
+  topicId: number;
 }
 
 export interface ChapterQuestionsRequestFailed {
@@ -44,6 +45,7 @@ export const actionCreators = {
         dispatch({
           type: "CHAPTER_QUESTIONS_RECEIVE",
           topics: response.data,
+          topicId,
         });
       } catch (error) {
         console.log(error);

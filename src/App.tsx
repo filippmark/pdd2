@@ -8,6 +8,8 @@ import TopicTest from "./components/TopicTest/TopicTest";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Chapters from "./components/Chapters/Chapters";
+import { ChapterTest } from "./components/ChapterTest/ChapterTest";
+import { RandomQuestionsTest } from "./components/RandomQuestionsTest/RandomQuestions";
 
 function App() {
   return (
@@ -30,6 +32,10 @@ function App() {
             render={() => <Chapters></Chapters>}
           ></Route>
           <Route
+            path="/tests-chapters/:chapterId"
+            render={(props) => <ChapterTest {...props}></ChapterTest>}
+          ></Route>
+          <Route
             exact
             path="/tests-topics"
             render={() => <Topics></Topics>}
@@ -37,6 +43,10 @@ function App() {
           <Route
             path="/tests-topics/:topicId"
             render={(props) => <TopicTest {...props}></TopicTest>}
+          ></Route>
+          <Route
+            path="/random-questions/"
+            render={(props) => <RandomQuestionsTest {...props} ></RandomQuestionsTest>}
           ></Route>
         </Switch>
       </div>

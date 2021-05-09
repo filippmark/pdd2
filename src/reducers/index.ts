@@ -8,6 +8,7 @@ import * as QuestionsChapters from "./questionsByChapter";
 import * as QuestionsControl from "./questionsForControl";
 import * as QuestionsRandomControl from "./questionsRandomForControl";
 import * as SaveUserAnswers from "./saveUserAnswers";
+import * as QuestionsRandom from './questions10Random';
 
 export interface ApplicationState {
   signIn: SignIn.SignInState;
@@ -16,6 +17,7 @@ export interface ApplicationState {
   questionsTopics: QuestionsTopics.QuestionSTopicState;
   test: Test.TestState;
   chapters: Chapters.ChaptersState;
+  questionsRandom: QuestionsRandom.QuestionsRandomState,
   questionsChapters: QuestionsChapters.QuestionsChapterstate;
   questionsControl: QuestionsControl.QuestionsControlState;
   questionsRandomControl: QuestionsRandomControl.QuestionsRandomControlState;
@@ -31,6 +33,7 @@ export const reducers = {
   chapters: Chapters.reducer,
   questionsChapters: QuestionsChapters.reducer,
   questionsControl: QuestionsControl.reducer,
+  questionsRandom: QuestionsRandom.reducer,
   questionsRandomControl: QuestionsRandomControl.reducer,
   saveUserAnswers: SaveUserAnswers.reducer
 };

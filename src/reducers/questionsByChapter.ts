@@ -10,7 +10,7 @@ export const initialState = {
 
 export interface QuestionsChapterstate {
   isLoading: boolean;
-  questionsChapters: { topicId: number; questionsChapter: TopicQuestion[] }[];
+  questionsChapters: { topicId: number; questionsTopic: TopicQuestion[] }[];
   error: string;
 }
 
@@ -23,6 +23,7 @@ export const reducer: Reducer<QuestionsChapterstate> = (
   }
 
   const action = incomingAction as knownAction;
+  console.log(action);
   switch (action.type) {
     case "CHAPTER_QUESTIONS_REQUEST":
       return { ...state, isLoading: true, error: "" };
@@ -32,8 +33,8 @@ export const reducer: Reducer<QuestionsChapterstate> = (
         questionsChapters: !!action.topics.length
           ? state.questionsChapters.concat([
               {
-                topicId: action.topics[0].topicId,
-                questionsChapter: action.topics,
+                topicId: action.topicId,
+                questionsTopic: action.topics,
               },
             ])
           : [...state.questionsChapters],

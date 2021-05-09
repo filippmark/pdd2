@@ -15,6 +15,7 @@ import { initialState as questionsChaptersInit } from "./reducers/questionsByCha
 import { initialState as questionsControlInit } from "./reducers/questionsForControl";
 import { initialState as questionsRandomControlInit } from "./reducers/questionsRandomForControl";
 import {initialState as saveUserAnswersInit} from "./reducers/saveUserAnswers";
+import { initialState as questionsRandom } from './reducers/questions10Random';
 import configureStore from "./reducers/configStore";
 
 const store = configureStore({
@@ -27,7 +28,8 @@ const store = configureStore({
   questionsChapters: questionsChaptersInit,
   questionsControl: questionsControlInit,
   questionsRandomControl: questionsRandomControlInit,
-  saveUserAnswers: saveUserAnswersInit
+  saveUserAnswers: saveUserAnswersInit,
+  questionsRandom
 });
 
 ReactDOM.render(

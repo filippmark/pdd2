@@ -83,7 +83,7 @@ export const reducer: Reducer<TestState> = (
     case "INCREASE_AMOUNT_OF_ERRORS":
       return {
         ...state,
-        amountOfErrors: ++state.amountOfErrors,
+        amountOfErrors: state.amountOfErrors + 1,
       };
     default:
       return state;

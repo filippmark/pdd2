@@ -11,6 +11,7 @@ export interface RandomControlTopicQuestionsRequest {
 export interface RandomControlTopicQuestionsReceive {
   type: "RANDOM_CONTROL_TOPIC_QUESTIONS_RECEIVE";
   topics: TopicQuestion[];
+  endTime: number;
 }
 
 export interface RandomControlTopicQuestionsRequestFailed {
@@ -32,7 +33,7 @@ export const actionCreators = {
   removeRandomQuestionsForControl: () => ({
     type: "REMOVE_RANDOM_CONTROL_QUESTIONS_BY_TOPIC",
   }),
-  getRandomQuestionsForControl: (topicId: number): any => {
+  getRandomQuestionsForControl: (): any => {
     return async (
       dispatch: Dispatch<knownAction>,
       getState: () => ApplicationState
@@ -45,7 +46,8 @@ export const actionCreators = {
         console.log(response);
         dispatch({
           type: "RANDOM_CONTROL_TOPIC_QUESTIONS_RECEIVE",
-          topics: response.data,
+          topics: response.data.questions,
+          endTime: response.data.endTime,
         });
       } catch (error) {
         console.log(error);

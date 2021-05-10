@@ -10,7 +10,7 @@ export default function Tests() {
         <ListGroup>
           <ListGroupItem className="tests__item" tag="button" action>
             <NavItem className="test__navitem">
-              <NavLink tag={Link} className="text-dark" to="/">
+              <NavLink tag={Link} className="text-dark" to="/personalised-questions/">
                 Персональная тренировка
               </NavLink>
             </NavItem>
@@ -18,7 +18,7 @@ export default function Tests() {
           <ListGroupItem className="tests__item" tag="button" action>
             <NavItem className="test__navitem">
               <NavLink tag={Link} className="text-dark" to="/tests-chapters">
-                Тренирока по главам по ПДД
+                Тренировка по главам по ПДД
               </NavLink>
             </NavItem>
           </ListGroupItem>
@@ -38,21 +38,21 @@ export default function Tests() {
           </ListGroupItem>
           <ListGroupItem className="tests__item" tag="button" action>
             <NavItem className="test__navitem">
-              <NavLink tag={Link} className="text-dark" to="/">
+              <NavLink tag={Link} className="text-dark" to="/control-topics">
                 Контроль по главам ПДД
               </NavLink>
             </NavItem>
           </ListGroupItem>
           <ListGroupItem className="tests__item" tag="button" action>
             <NavItem className="test__navitem">
-              <NavLink tag={Link} className="text-dark" to="/">
+              <NavLink tag={Link} className="text-dark" to="/random-questions-control/">
                 Контроль по случайному билету Х10
               </NavLink>
             </NavItem>
           </ListGroupItem>
           <ListGroupItem className="tests__item" tag="button" action>
             <NavItem className="test__navitem">
-              <NavLink tag={Link} className="text-dark" to="/">
+              <NavLink tag={Link} className="text-dark" to="/random-questions-control/">
                 Контроль по случайному билету
               </NavLink>
             </NavItem>

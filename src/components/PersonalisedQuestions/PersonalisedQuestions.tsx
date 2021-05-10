@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { actionCreators } from "../../actions/questions10Random";
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { ApplicationState } from '../../reducers';
+import { actionCreators } from "../../actions/personalisedQuestions";
 import Loader from '../Global/Loader/Loader';
 import Test from '../Test/Test';
 
 
-export const RandomQuestionsTest = (props: any) => {
+export const PersonalisedQuestions = (props: any) => {
     const questions = useSelector(
         (state: ApplicationState) => (
             {
                 topicId: 0,
-                questionsTopic: state.questionsRandom.questions,
+                questionsTopic: state.questionsPersonalised.questions,
             }
         ),
         shallowEqual
     );
     const isLoading = useSelector(
-        (state: ApplicationState) => state.questionsRandom.isLoading,
+        (state: ApplicationState) => state.questionsPersonalised.isLoading,
     );
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(actionCreators.getQuestionsByRandom());
+        dispatch(actionCreators.getQuestionsByPersonal());
     }, [dispatch]);
 
 

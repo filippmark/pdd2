@@ -14,8 +14,10 @@ import { initialState as chaptersInit } from "./reducers/chapters";
 import { initialState as questionsChaptersInit } from "./reducers/questionsByChapter";
 import { initialState as questionsControlInit } from "./reducers/questionsForControl";
 import { initialState as questionsRandomControlInit } from "./reducers/questionsRandomForControl";
-import {initialState as saveUserAnswersInit} from "./reducers/saveUserAnswers";
+import { initialState as saveUserAnswersInit } from "./reducers/saveUserAnswers";
 import { initialState as questionsRandom } from './reducers/questions10Random';
+import { initialState as questionsPersonalised } from './reducers/questionsPersonalised';
+import {initialState as quetionsTopicsControl} from './reducers/questionsByTopicForControl';
 import configureStore from "./reducers/configStore";
 
 const store = configureStore({
@@ -29,7 +31,9 @@ const store = configureStore({
   questionsControl: questionsControlInit,
   questionsRandomControl: questionsRandomControlInit,
   saveUserAnswers: saveUserAnswersInit,
-  questionsRandom
+  questionsRandom,
+  questionsPersonalised,
+  quetionsTopicsControl,
 });
 
 ReactDOM.render(

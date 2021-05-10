@@ -9,19 +9,23 @@ import * as QuestionsControl from "./questionsForControl";
 import * as QuestionsRandomControl from "./questionsRandomForControl";
 import * as SaveUserAnswers from "./saveUserAnswers";
 import * as QuestionsRandom from './questions10Random';
+import * as QuestionsPersonalised from './questionsPersonalised';
+import * as QuestionsTopicsControl from './questionsByTopicForControl';
 
 export interface ApplicationState {
   signIn: SignIn.SignInState;
   signUp: SignUp.SignUpState;
   topics: Topics.TopicsState;
   questionsTopics: QuestionsTopics.QuestionSTopicState;
+  quetionsTopicsControl: QuestionsTopicsControl.QuestionsTopicControlState,
   test: Test.TestState;
   chapters: Chapters.ChaptersState;
   questionsRandom: QuestionsRandom.QuestionsRandomState,
   questionsChapters: QuestionsChapters.QuestionsChapterstate;
   questionsControl: QuestionsControl.QuestionsControlState;
   questionsRandomControl: QuestionsRandomControl.QuestionsRandomControlState;
-  saveUserAnswers: SaveUserAnswers.SaveUserAnswersState
+  questionsPersonalised: QuestionsPersonalised.QuestionsPersonalisedState,
+  saveUserAnswers: SaveUserAnswers.SaveUserAnswersState;
 }
 
 export const reducers = {
@@ -29,11 +33,13 @@ export const reducers = {
   signIn: SignIn.reducer,
   topics: Topics.reducer,
   questionsTopics: QuestionsTopics.reducer,
+  quetionsTopicsControl: QuestionsTopicsControl.reducer,
   test: Test.reducer,
   chapters: Chapters.reducer,
   questionsChapters: QuestionsChapters.reducer,
   questionsControl: QuestionsControl.reducer,
   questionsRandom: QuestionsRandom.reducer,
   questionsRandomControl: QuestionsRandomControl.reducer,
+  questionsPersonalised: QuestionsPersonalised.reducer,
   saveUserAnswers: SaveUserAnswers.reducer
 };

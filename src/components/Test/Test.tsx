@@ -27,6 +27,7 @@ export default function Test(props: {
   );
 
   useEffect(() => {
+    console.log(amountOfErrors, isControlMode);
     if (isControlMode && amountOfErrors === 2) {
       console.log("waste");
     }

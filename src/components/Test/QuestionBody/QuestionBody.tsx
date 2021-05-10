@@ -39,9 +39,13 @@ export default function QuestionBody(props: {
 
   function handleAnswerSelect(event: React.MouseEvent<any, MouseEvent>) {
     const answerIndex = parseInt(event.currentTarget.id);
+    const answer = props.question!.answers[answerIndex];
+    if(!answer.correct) {
+      dispatch(actionCreators.increaseAmountOfErrors());
+    }
     dispatch(
       actionCreators.addAnswerToQuestion({
-        answerId: props.question!.answers[answerIndex].id,
+        answerId: answer.id,
         questionId: props.question!.id,
       })
     );

@@ -21,8 +21,7 @@ export default function TopicTest(props: any) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(props.match);
-    dispatch(actionCreators.getQuestionsByTopic(props.match.params.topicId));
+    dispatch(actionCreators.getQuestionsByTopic(parseInt(props.match.params.topicId)));
   }, [dispatch, props.match, props.match.params.topicId]);
 
   useEffect(() => {

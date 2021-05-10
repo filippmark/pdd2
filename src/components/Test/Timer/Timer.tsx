@@ -1,9 +1,7 @@
 import React, { useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "../../../reducers";
-import { actionCreators } from "../../../actions/test";
 
-type TimerType = NodeJS.Timeout | null;
 
 export default function Timer() {
   const startDate = useSelector(
@@ -12,23 +10,13 @@ export default function Timer() {
   const dispatch = useDispatch();
   const endDate = useSelector((state: ApplicationState) => state.test.dateEnd);
   const remainingTime = useMemo(() => {
+    console.log(endDate);
     if (endDate && startDate)
       return new Date(endDate.getTime() - startDate.getTime());
     else return null;
   }, [endDate, startDate]);
 
   useEffect(() => {
-    let newTimerId: TimerType = null;
-    if (!!endDate) {
-      newTimerId = setTimeout(() => {
-        dispatch(
-          actionCreators.setTestEndDate(new Date(endDate.getTime() - 1000))
-        );
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(newTimerId!);
-    };
   }, [dispatch, endDate]);
 
   return (

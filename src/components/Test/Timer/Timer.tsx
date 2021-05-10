@@ -14,13 +14,14 @@ export default function Timer() {
     if (endDate && startDate) {
       const time = endDate.getTime() - startDate.getTime();
       if (time <= 0) {
+        dispatch(actionCreators.setTestFinished())
         return null;
       } else {
         return new Date(time);
       }
     }
     else return null;
-  }, [endDate, startDate]);
+  }, [dispatch, endDate, startDate]);
 
   const isTestFinished = useSelector(
     (state: ApplicationState) => state.test.isTestFinished
@@ -29,7 +30,7 @@ export default function Timer() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if(!isTestFinished) {
+      if (!isTestFinished) {
         dispatch(actionCreators.setTestStartDate());
       }
     }, 1000);
@@ -52,21 +53,19 @@ export default function Timer() {
 
     return (
       <div className="mx-3 timer">
-        {remainingTime && (
-          <h5>
-            {`${formattNumber(remainingTime.getMinutes())} : ${formattNumber(remainingTime.getSeconds())}`}
-          </h5>
-        )}
+
+        <h5>
+          {`${formattNumber(remainingTime.getMinutes())} : ${formattNumber(remainingTime.getSeconds())}`}
+        </h5>
+
       </div>
     );
   } else {
     return (
       <div className="mx-3 timer">
-        {remainingTime && (
-          <h5>
-            00 : 00
+        <h5>
+          00 : 00
           </h5>
-        )}
       </div>
     )
   }

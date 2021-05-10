@@ -3,10 +3,6 @@
   margin-left: 5%;
 }
 
-.question-body__text {
-  height: 10%;
-}
-
 .question-body__image-wrapper {
   width: 100%;
   margin: 20px 0;
@@ -21,7 +17,6 @@
 }
 
 .question-body__answers {
-  height: 20%;
 }
 
 .question-body__answers button {

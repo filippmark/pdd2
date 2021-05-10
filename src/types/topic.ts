@@ -8,6 +8,8 @@ export interface Topic {
 export interface TextId {
   id: number;
   text: string;
+  name: string;
+  linkToImage: string;
 }
 
 export interface TopicQuestion {

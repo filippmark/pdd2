@@ -24,6 +24,9 @@ export default function Hint(props: {
       return answerQuestion?.answerId;
     }
   );
+  const isControlMode = useSelector(
+    (state: ApplicationState) => state.test.controlMode
+  );
   const dispatch = useDispatch();
   const showHint = useSelector(
     (state: ApplicationState) => state.test.showHint
@@ -39,6 +42,7 @@ export default function Hint(props: {
       disabled={showHint || !!answerId}
       onClick={handleShowHint}
       color="success"
+      hidden={isControlMode}
     >
       Подсказка
     </Button>

@@ -1,6 +1,6 @@
-import axios from "axios";
+import { Axios } from "../axios";
 import { Dispatch } from "redux";
-import { endpoint } from "..";
+
 import { ApplicationState } from "../reducers/index";
 
 export interface SaveUserAnswersRequest {
@@ -37,7 +37,7 @@ export const actionCreators = {
     ) => {
       dispatch({ type: "SAVE_USER_ANSWERS_REQUEST" });
       try {
-        const response = await axios.post(endpoint + `controls/random`, answersForQuestions);
+        const response = await Axios.post( `controls/random`, answersForQuestions);
         console.log(response);
         dispatch({
           type: "SAVE_USER_ANSWERS_RECEIVE",
@@ -46,7 +46,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "SAVE_USER_ANSWERS_FAILED",
-          error: error.response?.status,
+          error: error.response?.data,
         });
       }
     };

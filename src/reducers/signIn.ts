@@ -8,6 +8,7 @@ export const initialState = {
   error: "",
   verifyIsLoading: false,
   verifyError: "",
+  isUserLoggedIn: false,
 };
 
 export interface SignInState {
@@ -17,6 +18,7 @@ export interface SignInState {
   error: string;
   verifyIsLoading: boolean;
   verifyError: string;
+  isUserLoggedIn: boolean;
 }
 
 export const reducer: Reducer<SignInState> = (
@@ -36,6 +38,7 @@ export const reducer: Reducer<SignInState> = (
         ...state,
         token: action.token,
         username: action.username,
+        isUserLoggedIn: true,
         isLoading: false,
       };
     case "SIGN_IN_REQUEST_FAILED":
@@ -46,6 +49,8 @@ export const reducer: Reducer<SignInState> = (
       return { ...state, token: action.token, verifyIsLoading: false };
     case "VERIFY_JWT_TOKEN_REQUEST_FAILED":
       return { ...state, verifyError: action.verifyError };
+    case "SIGN_OUT":
+      return {...state, isUserLoggedIn: false, username: '', token: ''};
     default:
       return state;
   }

@@ -10,6 +10,7 @@ export default function Timer() {
   );
   const dispatch = useDispatch();
   const endDate = useSelector((state: ApplicationState) => state.test.dateEnd);
+  const isControlTest = useSelector((state: ApplicationState) => state.test.controlMode);
   const remainingTime = useMemo(() => {
     if (endDate && startDate) {
       const time = endDate.getTime() - startDate.getTime();
@@ -49,24 +50,26 @@ export default function Timer() {
     return value.toString();
   }
 
-  if (remainingTime) {
-
-    return (
-      <div className="mx-3 timer">
-
-        <h5>
-          {`${formattNumber(remainingTime.getMinutes())} : ${formattNumber(remainingTime.getSeconds())}`}
-        </h5>
-
-      </div>
-    );
-  } else {
-    return (
-      <div className="mx-3 timer">
-        <h5>
-          00 : 00
+  if(isControlTest) {
+    if (remainingTime) {
+      return (
+        <div className="mx-3 timer">
+          <h5>
+            {`${formattNumber(remainingTime.getMinutes())} : ${formattNumber(remainingTime.getSeconds())}`}
           </h5>
-      </div>
-    )
+        </div>
+      );
+    } else {
+      return (
+        <div className="mx-3 timer">
+          <h5>
+            00 : 00
+          </h5>
+        </div>
+      )
+    }
+  } else {
+    return <></>;
   }
+  
 }

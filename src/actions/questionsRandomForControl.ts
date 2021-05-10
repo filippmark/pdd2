@@ -1,6 +1,6 @@
-import axios from "axios";
+import { Axios } from "../axios";
 import { Dispatch } from "redux";
-import { endpoint } from "..";
+
 import { ApplicationState } from "../reducers/index";
 import { TopicQuestion } from "../types/topic";
 
@@ -40,8 +40,8 @@ export const actionCreators = {
     ) => {
       dispatch({ type: "RANDOM_CONTROL_TOPIC_QUESTIONS_REQUEST" });
       try {
-        const response = await axios.get(
-          endpoint + `controls/random`
+        const response = await Axios.get(
+           `controls/random`
         );
         console.log(response);
         dispatch({
@@ -53,7 +53,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "RANDOM_CONTROL_TOPIC_QEUSTIONS_REQUEST_FAILED",
-          error: error.response?.status,
+          error: error.response?.data,
         });
       }
     };

@@ -56,6 +56,7 @@ export const reducer: Reducer<TestState> = (
         anwersQuestions: [],
         currentQuestion: 0,
         dateStart: null,
+        dateEnd: null,
         showHint: false,
         controlMode: false,
         amountOfErrors: 0,

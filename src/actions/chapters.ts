@@ -1,6 +1,6 @@
-import axios from "axios";
+import { Axios } from "../axios";
 import { Dispatch } from "redux";
-import { endpoint } from "..";
+
 import { ApplicationState } from "../reducers/index";
 import { Topic } from "../types/topic";
 
@@ -31,14 +31,14 @@ export const actionCreators = {
     ) => {
       dispatch({ type: "CHAPTERS_REQUEST" });
       try {
-        const response = await axios.get(endpoint + "chapters");
+        const response = await Axios.get( "chapters");
         console.log(response);
         dispatch({ type: "CHAPTERS_RECEIVE", chapters: response.data });
       } catch (error) {
         console.log(error);
         dispatch({
           type: "CHAPTERS_REQUEST_FAILED",
-          error: error.response?.status,
+          error: error.response?.data,
         });
       }
     };

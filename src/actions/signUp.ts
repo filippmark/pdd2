@@ -1,6 +1,6 @@
-import axios from "axios";
+import { Axios } from "../axios";
 import { Dispatch } from "redux";
-import { endpoint } from "..";
+
 import { ApplicationState } from "../reducers/index";
 
 export interface SignUpRequest {
@@ -33,13 +33,13 @@ export const actionCreators = {
       dispatch({ type: "SIGN_UP_REQUEST" });
       console.log(userData);
       try {
-        const response = await axios.post(endpoint + "auth/signUp", userData);
+        const response = await Axios.post( "auth/signUp", userData);
         console.log(response);
         dispatch({ type: "SIGN_UP_RECEIVE", data: "2123" });
       } catch (error) {
         dispatch({
           type: "SIGN_UP_REQUEST_FAILED",
-          error: error.response?.status,
+          error: error.response?.data,
         });
       }
     };

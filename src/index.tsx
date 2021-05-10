@@ -20,7 +20,7 @@ import { initialState as questionsPersonalised } from './reducers/questionsPerso
 import {initialState as quetionsTopicsControl} from './reducers/questionsByTopicForControl';
 import configureStore from "./reducers/configStore";
 
-const store = configureStore({
+export const store = configureStore({
   signIn: signInInit,
   signUp: signUpInit,
   topics: topicsInit,
@@ -50,4 +50,3 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-export const endpoint = "https://kolesa-app.herokuapp.com/";

@@ -8,13 +8,20 @@ import {
   Container,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { ApplicationState } from "../../../reducers";
+import { actionCreators } from "../../../actions/signIn";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const isUserLoggedIn = useSelector((state: ApplicationState) => state.signIn.isUserLoggedIn, shallowEqual);
+  const dispatch = useDispatch();
 
   function toggle() {
     setIsOpen(!isOpen);
   }
+
+  const handleLogOut = () => dispatch(actionCreators.signOut());
 
   return (
     <header>
@@ -34,18 +41,32 @@ function Nav() {
                 Выбрать тест{" "}
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink tag={Link} className="text-dark" to="/sign-up">
-                {" "}
+            {isUserLoggedIn ?
+              (
+                <>
+                  <NavItem onClick={handleLogOut}>
+                    <NavLink tag={Link} className="text-dark">
+                      Выйти
+                    </NavLink>
+                  </NavItem>
+                </>
+              ) :
+              (
+                <>
+                  <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/sign-up">
+                      {" "}
                 Зарегистрироваться
               </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} className="text-dark" to="/sign-in">
-                {" "}
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/sign-in">
+                      {" "}
                 Войти{" "}
-              </NavLink>
-            </NavItem>
+                    </NavLink>
+                  </NavItem>
+                </>
+              )}
           </ul>
         </Container>
       </Navbar>

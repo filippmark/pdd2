@@ -1,6 +1,6 @@
-import axios from "axios";
+import { Axios } from "../axios";
 import { Dispatch } from "redux";
-import { endpoint } from "..";
+
 import { ApplicationState } from "../reducers/index";
 import { TopicQuestion } from "../types/topic";
 
@@ -38,8 +38,8 @@ export const actionCreators = {
     ) => {
       dispatch({ type: "PERSONAL_QUESTIONS_REQUEST" });
       try {
-        const response = await axios.get(
-          endpoint + 'controls/personalized'
+        const response = await Axios.get(
+           'controls/personalized'
         );
         console.log(response);
         dispatch({
@@ -51,7 +51,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "PERSONAL_QEUSTIONS_REQUEST_FAILED",
-          error: error.response?.status,
+          error: error.response?.data,
         });
       }
     };

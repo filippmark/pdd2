@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Global/Navbar/Navbar";
 import Auth from "./components/Auth/Auth";
@@ -13,8 +13,20 @@ import { RandomQuestionsTest } from "./components/RandomQuestionsTest/RandomQues
 import { RandomQuestionsControl } from "./components/RandomQuestionsControl/RandomQuestionsControl";
 import { TopicControl } from "./components/TopicControl/TopicControl";
 import { PersonalisedQuestions } from "./components/PersonalisedQuestions/PersonalisedQuestions";
+import { useDispatch } from "react-redux";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem('TOKEN');
+    const username = localStorage.getItem('USERNAME');
+    if (token && username) {
+      dispatch({ type: "SIGN_IN_RECEIVE", token, username });
+    }
+  }, [dispatch]);
+
   return (
     <Router>
       <Nav></Nav>
@@ -68,11 +80,13 @@ function App() {
             path="/random-questions-control/"
             render={(props) => <RandomQuestionsControl {...props} ></RandomQuestionsControl>}
           ></Route>
-          <Route
-            exact
-            path="/personalised-questions/"
-            render={(props) => <PersonalisedQuestions {...props} ></PersonalisedQuestions>}
-          ></Route>
+          <PrivateRoute >
+            <Route
+              exact
+              path="/personalised-questions/"
+              render={(props) => <PersonalisedQuestions {...props} ></PersonalisedQuestions>}
+            ></Route>
+          </PrivateRoute>
         </Switch>
       </div>
     </Router>

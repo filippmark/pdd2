@@ -23,7 +23,6 @@ export const reducer: Reducer<QuestionsRandomState> = (
   }
 
   const action = incomingAction as knownAction;
-  console.log(action);
   switch (action.type) {
     case "RANDOM_QUESTIONS_REQUEST":
       return { ...state, isLoading: true, error: "" };

@@ -35,7 +35,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "TOPICS_REQUEST_FAILED",
-          error: error.response.status,
+          error: error.response?.status,
         });
       }
     };

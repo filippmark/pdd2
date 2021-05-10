@@ -46,7 +46,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "SAVE_USER_ANSWERS_FAILED",
-          error: error.response.status,
+          error: error.response?.status,
         });
       }
     };

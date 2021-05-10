@@ -9,6 +9,7 @@ export const initialState = {
   showHint: false,
   controlMode: false,
   amountOfErrors: 0,
+  amountOfCorrect: 0,
   isTestFinished: false
 };
 
@@ -23,6 +24,7 @@ export interface TestState {
   showHint: boolean;
   controlMode: boolean;
   amountOfErrors: number;
+  amountOfCorrect: number;
   isTestFinished: boolean;
 }
 
@@ -57,13 +59,13 @@ export const reducer: Reducer<TestState> = (
         showHint: false,
         controlMode: false,
         amountOfErrors: 0,
+        amountOfCorrect: 0,
         isTestFinished: false
       };
     case "SET_TEST_START_DATE":
       return {
         ...state,
         dateStart: action.date,
-        dateEnd: new Date(action.date.getTime() + 15 * 60000),
       };
     case "SET_TEST_END_DATE":
       return {
@@ -85,6 +87,11 @@ export const reducer: Reducer<TestState> = (
         ...state,
         amountOfErrors: state.amountOfErrors + 1,
       };
+    case "INCREASE_AMOUNT_OF_CORRECT_ANSWERS": 
+      return {
+        ...state,
+        amountOfCorrect: state.amountOfCorrect + 1,
+      }
     default:
       return state;
   }

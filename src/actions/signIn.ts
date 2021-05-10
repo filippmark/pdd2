@@ -56,7 +56,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "VERIFY_JWT_TOKEN_REQUEST_FAILED",
-          verifyError: error.response.status,
+          verifyError: error.response?.status,
         });
       }
     };
@@ -75,7 +75,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "SIGN_IN_REQUEST_FAILED",
-          error: error.response.status,
+          error: error.response?.status,
         });
       }
     };

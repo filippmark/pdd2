@@ -23,7 +23,6 @@ export const reducer: Reducer<QuestionsChapterstate> = (
   }
 
   const action = incomingAction as knownAction;
-  console.log(action);
   switch (action.type) {
     case "CHAPTER_QUESTIONS_REQUEST":
       return { ...state, isLoading: true, error: "" };

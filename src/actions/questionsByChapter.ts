@@ -51,7 +51,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "CHAPTER_QEUSTIONS_REQUEST_FAILED",
-          error: error.response.status,
+          error: error.response?.status,
         });
       }
     };

@@ -6,14 +6,15 @@ import QuestionBody from "./QuestionBody/QuestionBody";
 import "./Test.css";
 import { ApplicationState } from "../../reducers";
 import { actionCreators } from "../../actions/test";
+import { Result } from "./Results/Results";
 
 export default function Test(props: {
   questions:
-    | {
-        topicId: number;
-        questionsTopic: TopicQuestion[];
-      }
-    | undefined;
+  | {
+    topicId: number;
+    questionsTopic: TopicQuestion[];
+  }
+  | undefined;
 }) {
   const dispatch = useDispatch();
   const currentQuestion = useSelector(
@@ -27,11 +28,10 @@ export default function Test(props: {
   );
 
   useEffect(() => {
-    console.log(amountOfErrors, isControlMode);
     if (isControlMode && amountOfErrors === 2) {
-      console.log("waste");
+      dispatch(actionCreators.setTestFinished())
     }
-  }, [amountOfErrors, isControlMode]);
+  }, [amountOfErrors, dispatch, isControlMode]);
 
   useEffect(() => {
     dispatch(actionCreators.setTestStartDate());
@@ -53,6 +53,7 @@ export default function Test(props: {
             : null
         }
       ></QuestionBody>
+      <Result></Result>
     </div>
   );
 }

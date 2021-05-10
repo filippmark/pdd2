@@ -38,7 +38,11 @@ export interface IncreaseAmountOfErrors {
 }
 
 export interface SetTestFinished {
-  type: "SET_TEST_FINISHED"
+  type: "SET_TEST_FINISHED";
+}
+
+export interface IncreaseAmountOfCorrectAnswers {
+  type: 'INCREASE_AMOUNT_OF_CORRECT_ANSWERS';
 }
 
 export type knownAction =
@@ -50,7 +54,8 @@ export type knownAction =
   | ShowHint
   | SetControl
   | IncreaseAmountOfErrors
-  | SetTestFinished;
+  | SetTestFinished
+  | IncreaseAmountOfCorrectAnswers ;
 
 export const actionCreators = {
   setCurrentQuestion: (questionNumber: number) => ({
@@ -83,5 +88,8 @@ export const actionCreators = {
   }),
   setTestFinished: () => ({
     type: "SET_TEST_FINISHED"
-  })
+  }),
+  increaseAmountOfCorrectAnswers: () => ({
+    type: "INCREASE_AMOUNT_OF_CORRECT_ANSWERS",
+  }),
 };

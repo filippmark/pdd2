@@ -6,6 +6,7 @@ import { TopicQuestion } from "../../../types/topic";
 import { Answer } from "../../../types/answer";
 import { actionCreators } from "../../../actions/test";
 import { ApplicationState } from "../../../reducers";
+import './QuestionBody.css'
 
 export default function QuestionBody(props: {
   question: TopicQuestion | null;
@@ -40,8 +41,10 @@ export default function QuestionBody(props: {
   function handleAnswerSelect(event: React.MouseEvent<any, MouseEvent>) {
     const answerIndex = parseInt(event.currentTarget.id);
     const answer = props.question!.answers[answerIndex];
-    if(!answer.correct) {
+    if (!answer.correct) {
       dispatch(actionCreators.increaseAmountOfErrors());
+    } else {
+      dispatch(actionCreators.increaseAmountOfCorrectAnswers());
     }
     dispatch(
       actionCreators.addAnswerToQuestion({
@@ -54,15 +57,15 @@ export default function QuestionBody(props: {
   return (
     <div className="question-body">
       <h5 className="question-body__text">{props.question?.text}</h5>
-      <div className="question-body__image-wrapper">
-        {props.question?.linkToImage && (
+      {props.question?.linkToImage && (
+        <div className="question-body__image-wrapper">
           <img
             className="question-body__image"
             src={props.question?.linkToImage}
             alt="question pic"
           ></img>
-        )}
-      </div>
+        </div>
+      )}
       <FormGroup className="question-body__answers">
         <div>
           {props.question?.answers.map((answer: Answer, index: number) => {

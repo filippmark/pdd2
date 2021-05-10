@@ -53,7 +53,7 @@ export const actionCreators = {
         console.log(error);
         dispatch({
           type: "CONTROL_TOPIC_QEUSTIONS_REQUEST_FAILED",
-          error: error.response.status,
+          error: error.response?.status,
         });
       }
     };

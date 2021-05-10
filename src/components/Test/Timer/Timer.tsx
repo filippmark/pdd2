@@ -1,7 +1,8 @@
 import React, { useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "../../../reducers";
-
+import { actionCreators } from '../../../actions/test';
+import './Timer.css';
 
 export default function Timer() {
   const startDate = useSelector(
@@ -10,22 +11,63 @@ export default function Timer() {
   const dispatch = useDispatch();
   const endDate = useSelector((state: ApplicationState) => state.test.dateEnd);
   const remainingTime = useMemo(() => {
-    console.log(endDate);
-    if (endDate && startDate)
-      return new Date(endDate.getTime() - startDate.getTime());
+    if (endDate && startDate) {
+      const time = endDate.getTime() - startDate.getTime();
+      if (time <= 0) {
+        return null;
+      } else {
+        return new Date(time);
+      }
+    }
     else return null;
   }, [endDate, startDate]);
+
+  const isTestFinished = useSelector(
+    (state: ApplicationState) => state.test.isTestFinished
+  );
+
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if(!isTestFinished) {
+        dispatch(actionCreators.setTestStartDate());
+      }
+    }, 1000);
+    return () => {
+      clearInterval(intervalId);
+    }
+  }, [dispatch, isTestFinished]);
 
   useEffect(() => {
   }, [dispatch, endDate]);
 
-  return (
-    <div className="timer">
-      {remainingTime && (
-        <h5>
-          {`${remainingTime.getMinutes()} : ${remainingTime.getSeconds()}`}
-        </h5>
-      )}
-    </div>
-  );
+  const formattNumber = (value: number): string => {
+    if (value < 10) {
+      return `0${value}`;
+    }
+    return value.toString();
+  }
+
+  if (remainingTime) {
+
+    return (
+      <div className="mx-3 timer">
+        {remainingTime && (
+          <h5>
+            {`${formattNumber(remainingTime.getMinutes())} : ${formattNumber(remainingTime.getSeconds())}`}
+          </h5>
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div className="mx-3 timer">
+        {remainingTime && (
+          <h5>
+            00 : 00
+          </h5>
+        )}
+      </div>
+    )
+  }
 }

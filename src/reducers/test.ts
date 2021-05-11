@@ -6,6 +6,7 @@ export const initialState = {
   anwersQuestions: [],
   dateStart: null,
   dateEnd: null,
+  dateFinish: null,
   showHint: false,
   controlMode: false,
   amountOfErrors: 0,
@@ -21,6 +22,7 @@ export interface TestState {
   }[];
   dateStart: Date | null;
   dateEnd: Date | null;
+  dateFinish: Date | null;
   showHint: boolean;
   controlMode: boolean;
   amountOfErrors: number;
@@ -57,6 +59,7 @@ export const reducer: Reducer<TestState> = (
         currentQuestion: 0,
         dateStart: null,
         dateEnd: null,
+        dateFinish: null,
         showHint: false,
         controlMode: false,
         amountOfErrors: 0,
@@ -92,6 +95,11 @@ export const reducer: Reducer<TestState> = (
       return {
         ...state,
         amountOfCorrect: state.amountOfCorrect + 1,
+      }
+    case "SET_TEST_FINISH_DATE": 
+      return {
+        ...state,
+        dateFinish: action.date,
       }
     default:
       return state;

@@ -26,15 +26,19 @@ export default function Test(props: {
   const amountOfErrors = useSelector(
     (state: ApplicationState) => state.test.amountOfErrors
   );
+  const amountOfAnswers = useSelector(
+    (state: ApplicationState) => state.test.anwersQuestions
+  );
 
   useEffect(() => {
     if (isControlMode && amountOfErrors === 2) {
       dispatch(actionCreators.setTestFinished())
+    } else if (amountOfAnswers.length === props.questions?.questionsTopic.length) {
+      dispatch(actionCreators.setTestFinished());
     }
-  }, [amountOfErrors, dispatch, isControlMode]);
+  }, [amountOfAnswers, amountOfErrors, dispatch, isControlMode, props.questions]);
 
   useEffect(() => {
-    dispatch(actionCreators.setTestStartDate());
     return () => {
       dispatch(actionCreators.destroyTestResult());
     };

@@ -30,12 +30,18 @@ export const RandomQuestionsControl = (props: any) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(testActionCreators.setControl());   
-    }, [dispatch, questions.questionsTopic.length])
-    
+        if (questions.questionsTopic.length) {
+            dispatch(testActionCreators.setControl());
+        }
+    }, [dispatch, questions])
+
     useEffect(() => {
         if (endTime) {
-            dispatch(testActionCreators.setTestEndDate(new Date(endTime * 1000)));
+            const MS_IN_SECOND = 1000;
+            const endTimeMs = endTime * MS_IN_SECOND;
+            dispatch(testActionCreators.setTestEndDate(new Date(endTimeMs)));
+            const INTERVAL = 60;
+            dispatch(testActionCreators.setTestStartDate(new Date(endTimeMs - INTERVAL * MS_IN_SECOND)));
         }
     }, [dispatch, endTime]);
 

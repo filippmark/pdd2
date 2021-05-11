@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "../../../reducers";
 import { actionCreators } from '../../../actions/test';
@@ -11,9 +11,16 @@ export default function Timer() {
   const dispatch = useDispatch();
   const endDate = useSelector((state: ApplicationState) => state.test.dateEnd);
   const isControlTest = useSelector((state: ApplicationState) => state.test.controlMode);
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    if (startDate)
+      setCurrentDate(startDate);
+  }, [startDate]);
+
   const remainingTime = useMemo(() => {
-    if (endDate && startDate) {
-      const time = endDate.getTime() - startDate.getTime();
+    if (endDate && currentDate) {
+      const time = endDate.getTime() - currentDate.getTime();
       if (time <= 0) {
         dispatch(actionCreators.setTestFinished())
         return null;
@@ -22,23 +29,27 @@ export default function Timer() {
       }
     }
     else return null;
-  }, [dispatch, endDate, startDate]);
+  }, [dispatch, endDate, currentDate]);
 
   const isTestFinished = useSelector(
     (state: ApplicationState) => state.test.isTestFinished
   );
-
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!isTestFinished) {
-        dispatch(actionCreators.setTestStartDate());
+        setCurrentDate(new Date());
       }
     }, 1000);
     return () => {
       clearInterval(intervalId);
     }
   }, [dispatch, isTestFinished]);
+
+  useEffect(() => {
+    if(isTestFinished) {
+      dispatch(actionCreators.setTestFinishDate(currentDate))
+    }
+  },[currentDate, dispatch, isTestFinished])
 
   useEffect(() => {
   }, [dispatch, endDate]);
@@ -50,7 +61,7 @@ export default function Timer() {
     return value.toString();
   }
 
-  if(isControlTest) {
+  if (isControlTest) {
     if (remainingTime) {
       return (
         <div className="mx-3 timer">
@@ -71,5 +82,5 @@ export default function Timer() {
   } else {
     return <></>;
   }
-  
+
 }

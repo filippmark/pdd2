@@ -45,6 +45,11 @@ export interface IncreaseAmountOfCorrectAnswers {
   type: 'INCREASE_AMOUNT_OF_CORRECT_ANSWERS';
 }
 
+export interface SetTestFinishDate {
+  type: 'SET_TEST_FINISH_DATE';
+  date: Date;
+}
+
 export type knownAction =
   | SetCurrentQuestion
   | AddAnswerToQuestion
@@ -55,7 +60,8 @@ export type knownAction =
   | SetControl
   | IncreaseAmountOfErrors
   | SetTestFinished
-  | IncreaseAmountOfCorrectAnswers ;
+  | IncreaseAmountOfCorrectAnswers
+  | SetTestFinishDate;
 
 export const actionCreators = {
   setCurrentQuestion: (questionNumber: number) => ({
@@ -69,9 +75,9 @@ export const actionCreators = {
   destroyTestResult: () => ({
     type: "DESTROY_TEST_DATA",
   }),
-  setTestStartDate: () => ({
+  setTestStartDate: (date: Date) => ({
     type: "SET_TEST_START_DATE",
-    date: new Date(),
+    date,
   }),
   setTestEndDate: (date: Date) => ({
     type: "SET_TEST_END_DATE",
@@ -91,5 +97,9 @@ export const actionCreators = {
   }),
   increaseAmountOfCorrectAnswers: () => ({
     type: "INCREASE_AMOUNT_OF_CORRECT_ANSWERS",
+  }),
+  setTestFinishDate: (date: Date) => ({
+    type: 'SET_TEST_FINISH_DATE',
+    date,
   }),
 };

@@ -1,5 +1,6 @@
 import { Axios } from "../axios";
 import { Dispatch } from "redux";
+import { useHistory } from 'react-router-dom';
 
 import { ApplicationState } from "../reducers/index";
 
@@ -16,7 +17,7 @@ export interface SaveUserAnswersRequestFailed {
   error: string;
 }
 
-export interface ReturnStartState{
+export interface ReturnStartState {
   type: "RETURN_START_STATE"
 }
 
@@ -29,7 +30,7 @@ export type knownAction =
 export const actionCreators = {
   saveUserAnswers: (answersForQuestions: {
     durationInSeconds: number;
-    userAnswers: { answerId: number; questionId: number };
+    userAnswers: { answerId: number; questionId: number }[];
   }): any => {
     return async (
       dispatch: Dispatch<knownAction>,
@@ -37,8 +38,7 @@ export const actionCreators = {
     ) => {
       dispatch({ type: "SAVE_USER_ANSWERS_REQUEST" });
       try {
-        const response = await Axios.post( `controls/random`, answersForQuestions);
-        console.log(response);
+        const response = await Axios.post(`controls/`, answersForQuestions);
         dispatch({
           type: "SAVE_USER_ANSWERS_RECEIVE",
         });
@@ -51,5 +51,5 @@ export const actionCreators = {
       }
     };
   },
-  returnStartState: () => ({type: "RETURN_START_STATE"})
+  returnStartState: () => ({ type: "RETURN_START_STATE" })
 };

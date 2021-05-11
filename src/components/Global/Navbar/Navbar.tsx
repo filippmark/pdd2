@@ -30,7 +30,7 @@ function Nav() {
         light
       >
         <Container>
-          <NavbarBrand tag={Link} to="/">
+          <NavbarBrand tag={Link} to="/tests">
             KOLESA
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className="mr-2" />

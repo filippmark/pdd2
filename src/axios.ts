@@ -19,10 +19,8 @@ Axios.interceptors.response.use(
         return value;
     },
     async (error) => {
-        console.log(error.response.data);
-        console.log();
         if(error.response.status === 401) {
-            store.dispatch(actionCreators.signOut());
+            await store.dispatch(actionCreators.signOut());
             localStorage.removeItem('TOKEN');
             localStorage.removeItem('USERNAME');
             delete Axios.defaults.headers.common['Authorization'];

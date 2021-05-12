@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Input, FormGroup, Button } from "reactstrap";
 import { actionCreators } from "../../../actions/signIn";
 import "./SignIn.css";
-import { useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { ApplicationState } from "../../../reducers";
+import { useHistory } from "react-router";
 
 function SignIn() {
   const [formState, setForm] = useState({
@@ -10,6 +12,7 @@ function SignIn() {
     password: "",
   });
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -20,8 +23,17 @@ function SignIn() {
     });
   }
 
-  function signIn(event: React.MouseEvent<any, MouseEvent>) {
-    dispatch(actionCreators.signIn(formState));
+  const error = useSelector(
+    (state: ApplicationState) => state.signIn.error,
+    shallowEqual
+  );
+
+  const navigateCallback = () => {
+    history.push('/tests');
+  }
+
+  async function signIn(event: React.MouseEvent<any, MouseEvent>) {
+    await dispatch(actionCreators.signIn(formState, navigateCallback));
   }
 
   return (
@@ -47,6 +59,7 @@ function SignIn() {
       <Button className="sign-up__btn" color="success" onClick={signIn}>
         Войти
       </Button>
+      <div className="text-danger">{error}</div>
     </React.Fragment>
   );
 }

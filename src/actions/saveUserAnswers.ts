@@ -31,7 +31,7 @@ export const actionCreators = {
   saveUserAnswers: (answersForQuestions: {
     durationInSeconds: number;
     userAnswers: { answerId: number; questionId: number }[];
-  }): any => {
+  }, navigateCallback: (error?: any) =>  void): any => {
     return async (
       dispatch: Dispatch<knownAction>,
       getState: () => ApplicationState
@@ -42,12 +42,14 @@ export const actionCreators = {
         dispatch({
           type: "SAVE_USER_ANSWERS_RECEIVE",
         });
+        navigateCallback();
       } catch (error) {
         console.log(error);
         dispatch({
           type: "SAVE_USER_ANSWERS_FAILED",
           error: error.response?.data,
         });
+        navigateCallback(error);
       }
     };
   },

@@ -66,7 +66,7 @@ export const actionCreators = {
       }
     };
   },
-  signIn: (userData: { username: string; password: string }) => {
+  signIn: (userData: { username: string; password: string }, navigateCallback: () => void) => {
     return async (
       dispatch: Dispatch<knownAction>,
       getState: () => ApplicationState
@@ -81,6 +81,7 @@ export const actionCreators = {
         localStorage.setItem('USERNAME', username);
         Axios.defaults.headers.common['Authorization'] = 'Bearer ' + authenticationToken;
         dispatch({ type: "SIGN_IN_RECEIVE", token: authenticationToken, username });
+        navigateCallback();
       } catch (error) {
         console.log(error);
         dispatch({
@@ -92,5 +93,5 @@ export const actionCreators = {
   },
   signOut: () => ({
     type: 'SIGN_OUT'
-  })
+  }),
 };

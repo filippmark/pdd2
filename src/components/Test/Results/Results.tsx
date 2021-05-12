@@ -39,7 +39,13 @@ export const Result = () => {
         (state: ApplicationState) => state.test.dateFinish
     );
 
-
+    const navigateCallback = (error?: any) => {
+        if (error && error.response.status === 401) {
+            history.push('/sign-in');
+        } else {
+            history.push('/tests');
+        }
+    }
 
     const saveAnswers = async () => {
         let durationInSeconds = 0;
@@ -50,9 +56,8 @@ export const Result = () => {
             await dispatch(actionCreators.saveUserAnswers({
                 durationInSeconds,
                 userAnswers: answers,
-            }));
+            }, navigateCallback));
         }
-        history.push('/tests');
     }
 
 

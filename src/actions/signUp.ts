@@ -25,7 +25,7 @@ export const actionCreators = {
     email: string;
     username: string;
     password: string;
-  }): any => {
+  }, navigateCallback: () => void): any => {
     return async (
       dispatch: Dispatch<knownAction>,
       getState: () => ApplicationState
@@ -36,8 +36,9 @@ export const actionCreators = {
         const response = await Axios.post( "auth/signUp", userData);
         console.log(response);
         dispatch({ type: "SIGN_UP_RECEIVE", data: "2123" });
+        navigateCallback();
       } catch (error) {
-        dispatch({
+        await dispatch({
           type: "SIGN_UP_REQUEST_FAILED",
           error: error.response?.data,
         });

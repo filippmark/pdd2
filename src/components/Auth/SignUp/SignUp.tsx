@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Input, FormGroup, Button } from "reactstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../../actions/signUp";
 import "./SignUp.css";
+import { useHistory } from 'react-router-dom';
+import { ApplicationState } from "../../../reducers";
+
 
 function SignUp() {
   const [formState, setForm] = useState({
@@ -13,6 +16,7 @@ function SignUp() {
     password2: "",
   });
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -23,14 +27,22 @@ function SignUp() {
     });
   }
 
-  function registerNewUser(event: React.MouseEvent<any, MouseEvent>) {
-    dispatch(
+  const error = useSelector(
+    (state: ApplicationState) => state.signUp.error
+  )
+
+  const navigateCallback = () => {
+    history.push('/sign-in')
+  };
+
+  async function registerNewUser(event: React.MouseEvent<any, MouseEvent>) {
+    await dispatch(
       actionCreators.signUp({
         phone: formState.phone,
         email: formState.email,
         username: formState.username,
         password: formState.password,
-      })
+      }, navigateCallback)
     );
   }
 
@@ -94,6 +106,7 @@ function SignUp() {
           Зарегистрироваться{" "}
         </Button>
       </FormGroup>
+      <div className="text-danger"> {error} </div>
     </React.Fragment>
   );
 }

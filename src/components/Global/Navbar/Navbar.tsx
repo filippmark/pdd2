@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../reducers";
 import { actionCreators } from "../../../actions/signIn";
+import { Axios } from "../../../axios";
+
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +23,12 @@ function Nav() {
     setIsOpen(!isOpen);
   }
 
-  const handleLogOut = () => dispatch(actionCreators.signOut());
+  const handleLogOut = async () => {
+    await dispatch(actionCreators.signOut());
+    localStorage.removeItem('TOKEN');
+    localStorage.removeItem('USERNAME');
+    delete Axios.defaults.headers.common['Authorization'];
+  }
 
   return (
     <header>

@@ -5,12 +5,12 @@ import { actionCreators } from "./actions/signIn";
 const BASE_URL = "https://kolesa-app.herokuapp.com/";
 
 export const Axios = axios.create({
-    baseURL: BASE_URL
+    baseURL: BASE_URL,
 });
 
 const token = localStorage.getItem('TOKEN')
 
-if(token) {
+if (token) {
     Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 }
 
@@ -19,7 +19,7 @@ Axios.interceptors.response.use(
         return value;
     },
     async (error) => {
-        if(error.response.status === 401) {
+        if (error.response.status === 401) {
             await store.dispatch(actionCreators.signOut());
             localStorage.removeItem('TOKEN');
             localStorage.removeItem('USERNAME');

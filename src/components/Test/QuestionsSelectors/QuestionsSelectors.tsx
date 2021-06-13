@@ -5,7 +5,7 @@ import "./QuestionsSelectors.css";
 import Timer from "../Timer/Timer";
 import Hint from "../Hint/Hint";
 
-export default function QuestionsSelectors(props: {
+export default function questionsSelectors(props: {
   questions:
     | {
         topicId: number;

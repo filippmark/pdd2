@@ -89,6 +89,14 @@ export const Result = () => {
                             {amountOfCorrect}
                         </div>
                     </div>
+                    <div className="d-flex">
+                        <div className="mr-auto">
+                            Затраченное время:
+                        </div>
+                        <div >
+                            49 с
+                        </div>
+                    </div>
                 </div>
             </ModalBody>
             <ModalFooter>

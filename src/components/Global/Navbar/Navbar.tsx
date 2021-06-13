@@ -51,6 +51,11 @@ function Nav() {
             {isUserLoggedIn ?
               (
                 <>
+                  <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/profile">
+                      Профиль
+                    </NavLink>
+                  </NavItem>
                   <NavItem onClick={handleLogOut}>
                     <NavLink tag={Link} className="text-dark">
                       Выйти

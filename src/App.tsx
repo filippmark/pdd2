@@ -15,6 +15,7 @@ import { TopicControl } from "./components/TopicControl/TopicControl";
 import { PersonalisedQuestions } from "./components/PersonalisedQuestions/PersonalisedQuestions";
 import { useDispatch } from "react-redux";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { Profile } from "./components/Profile/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,11 @@ function App() {
       <Nav></Nav>
       <div className="app">
         <Switch>
+          <Route
+            exact
+            path="/profile"
+            render={(props) => <Profile {...props} ></Profile>}
+          ></Route>
           <Route
             exact
             path="/sign-in"
@@ -80,7 +86,7 @@ function App() {
             path="/random-questions-control/"
             render={(props) => <RandomQuestionsControl {...props} ></RandomQuestionsControl>}
           ></Route>
-          <PrivateRoute >
+          <PrivateRoute>
             <Route
               exact
               path="/personalised-questions/"

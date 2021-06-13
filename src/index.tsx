@@ -18,6 +18,7 @@ import { initialState as saveUserAnswersInit } from "./reducers/saveUserAnswers"
 import { initialState as questionsRandom } from './reducers/questions10Random';
 import { initialState as questionsPersonalised } from './reducers/questionsPersonalised';
 import {initialState as quetionsTopicsControl} from './reducers/questionsByTopicForControl';
+import { initialState as passedControls } from './reducers/passedControls';
 import configureStore from "./reducers/configStore";
 
 export const store = configureStore({
@@ -34,6 +35,7 @@ export const store = configureStore({
   questionsRandom,
   questionsPersonalised,
   quetionsTopicsControl,
+  passedControls,
 });
 
 ReactDOM.render(

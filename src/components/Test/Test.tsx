@@ -29,14 +29,19 @@ export default function Test(props: {
   const amountOfAnswers = useSelector(
     (state: ApplicationState) => state.test.anwersQuestions
   );
+  const isPassed = useSelector(
+    (state: ApplicationState) => state.test.isPassed
+  )
 
   useEffect(() => {
-    if (isControlMode && amountOfErrors === 2) {
-      dispatch(actionCreators.setTestFinished())
-    } else if (amountOfAnswers.length === props.questions?.questionsTopic.length) {
-      dispatch(actionCreators.setTestFinished());
+    if (!isPassed) {
+      if (isControlMode && amountOfErrors === 2) {
+        dispatch(actionCreators.setTestFinished())
+      } else if (amountOfAnswers.length === props.questions?.questionsTopic.length) {
+        dispatch(actionCreators.setTestFinished());
+      }
     }
-  }, [amountOfAnswers, amountOfErrors, dispatch, isControlMode, props.questions]);
+  }, [amountOfAnswers, amountOfErrors, dispatch, isControlMode, props.questions, isPassed]);
 
   useEffect(() => {
     return () => {

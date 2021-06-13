@@ -1,6 +1,6 @@
 import { Reducer, Action } from "redux";
 import { knownAction } from "../actions/passedControls";
-import { TopicQuestion } from "../types/topic";
+import { PassedControl } from "../types/topic";
 
 export const initialState = {
     isLoading: false,
@@ -11,7 +11,7 @@ export const initialState = {
 
 export interface QuestionsPassedState {
     isLoading: boolean;
-    questions: TopicQuestion[];
+    questions: PassedControl[];
     endDate: number;
     error: string;
 }
@@ -32,7 +32,6 @@ export const reducer: Reducer<QuestionsPassedState> = (
             return {
                 ...state,
                 questions: action.topics,
-                endDate: action.endTime,
                 isLoading: false,
             };
         case "PASSED_QEUSTIONS_REQUEST_FAILED":

@@ -28,3 +28,14 @@ export interface TopicQuestion {
   topicId: number;
   paragraph: Paragraph | null;
 }
+
+export interface RecordedQuestion {
+  question: TopicQuestion;
+  answer: Answer;
+}
+
+export interface PassedControl extends Topic {
+  createdAt: string;
+  durationInSeconds: number;
+  answers: RecordedQuestion[]
+}

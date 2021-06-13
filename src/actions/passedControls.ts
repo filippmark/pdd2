@@ -1,8 +1,9 @@
 import { Axios } from "../axios";
 import { Dispatch } from "redux";
-
+import moment from "moment";
 import { ApplicationState } from "../reducers/index";
-import { TopicQuestion } from "../types/topic";
+import { PassedControl } from "../types/topic";
+import 'moment/locale/ru';
 
 export interface PassedQuestionsRequest {
   type: "PASSED_QUESTIONS_REQUEST";
@@ -10,8 +11,7 @@ export interface PassedQuestionsRequest {
 
 export interface PassedQuestionsReceive {
   type: "PASSED_QUESTIONS_RECEIVE";
-  topics: TopicQuestion[];
-  endTime: number;
+  topics: PassedControl[];
 }
 
 export interface PassedQuestionsRequestFailed {
@@ -27,7 +27,7 @@ export type knownAction =
 
 export const actionCreators = {
   removeQuestionsByPassed: () => ({ type: "REMOVE_QUESTIONS_BY_Passed" }),
-  getQuestionsByPassed: (): any => {
+  getPassedQuestions: (): any => {
     return async (
       dispatch: Dispatch<knownAction>,
       getState: () => ApplicationState
@@ -35,13 +35,18 @@ export const actionCreators = {
       dispatch({ type: "PASSED_QUESTIONS_REQUEST" });
       try {
         const response = await Axios.get(
-           'CONTROLS'
+          'controls'
         );
         console.log(response);
+        moment.locale('ru');
+        const topics: PassedControl[] = response.data.map((value: PassedControl, id: number) => ({
+          ...value,
+          name: moment(value.createdAt).locale('ru').format('LLL'),
+          id,
+        }));
         dispatch({
           type: "PASSED_QUESTIONS_RECEIVE",
-          topics: response.data.questions,
-          endTime: response.data.endTime,
+          topics,
         });
       } catch (error) {
         console.log(error);

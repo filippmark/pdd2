@@ -16,6 +16,8 @@ import { PersonalisedQuestions } from "./components/PersonalisedQuestions/Person
 import { useDispatch } from "react-redux";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Profile } from "./components/Profile/Profile";
+import PassedControls from "./components/PassedControls/PassedControls";
+import { PassedControlTest } from "./components/PassedControl/PassedControl";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,11 +35,8 @@ function App() {
       <Nav></Nav>
       <div className="app">
         <Switch>
-          <Route
-            exact
-            path="/profile"
-            render={(props) => <Profile {...props} ></Profile>}
-          ></Route>
+          <Route exact path="/" render={() => <Tests></Tests>}></Route>
+          <Route path="/tests" render={() => <Tests></Tests>}></Route>
           <Route
             exact
             path="/sign-in"
@@ -48,13 +47,13 @@ function App() {
             path="/sign-up"
             render={() => <Auth logIn={false}></Auth>}
           ></Route>
-          <Route path="/tests" render={() => <Tests></Tests>}></Route>
           <Route
             exact
             path="/tests-chapters"
             render={() => <Chapters></Chapters>}
           ></Route>
           <Route
+            exact
             path="/tests-chapters/:chapterId"
             render={(props) => <ChapterTest {...props}></ChapterTest>}
           ></Route>
@@ -64,6 +63,7 @@ function App() {
             render={(props) => <Topics {...props}></Topics>}
           ></Route>
           <Route
+            exact
             path="/tests-topics/:topicId"
             render={(props) => <TopicTest {...props}></TopicTest>}
           ></Route>
@@ -73,6 +73,7 @@ function App() {
             render={(props) => <Topics {...props}></Topics>}
           ></Route>
           <Route
+            exact
             path="/control-topics/:topicId"
             render={(props) => <TopicControl {...props}></TopicControl>}
           ></Route>
@@ -86,12 +87,28 @@ function App() {
             path="/random-questions-control/"
             render={(props) => <RandomQuestionsControl {...props} ></RandomQuestionsControl>}
           ></Route>
-          <PrivateRoute>
-            <Route
-              exact
-              path="/personalised-questions/"
-              render={(props) => <PersonalisedQuestions {...props} ></PersonalisedQuestions>}
-            ></Route>
+          <PrivateRoute
+            exact
+            path="/personalised-questions/">
+            <PersonalisedQuestions></PersonalisedQuestions>
+          </PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/profile"
+          >
+            <Profile></Profile>
+          </PrivateRoute>
+          <PrivateRoute
+            path="/passed-controls"
+            exact
+          >
+            <PassedControls></PassedControls>
+          </PrivateRoute>
+          <PrivateRoute
+            path="/passed-control/:controlId"
+            exact
+          >
+            <PassedControlTest></PassedControlTest>
           </PrivateRoute>
         </Switch>
       </div>

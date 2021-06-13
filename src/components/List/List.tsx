@@ -9,7 +9,7 @@ export default function List(props: { topics: Topic[]; link: string }) {
       <ListGroup className="topics__list">
         {props.topics.map((topic: Topic) => (
           <ListGroupItem tag="button" action key={topic.id}>
-            <NavItem className="topics__navitem">
+            <NavItem className="topics__navitem text-center">
               <NavLink
                 tag={Link}
                 className="text-dark"

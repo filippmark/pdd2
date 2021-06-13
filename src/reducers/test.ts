@@ -11,7 +11,8 @@ export const initialState = {
   controlMode: false,
   amountOfErrors: 0,
   amountOfCorrect: 0,
-  isTestFinished: false
+  isTestFinished: false,
+  isPassed: false,
 };
 
 export interface TestState {
@@ -28,6 +29,7 @@ export interface TestState {
   amountOfErrors: number;
   amountOfCorrect: number;
   isTestFinished: boolean;
+  isPassed: boolean;
 }
 
 export const reducer: Reducer<TestState> = (
@@ -64,7 +66,8 @@ export const reducer: Reducer<TestState> = (
         controlMode: false,
         amountOfErrors: 0,
         amountOfCorrect: 0,
-        isTestFinished: false
+        isTestFinished: false,
+        isPassed: false,
       };
     case "SET_TEST_START_DATE":
       return {
@@ -91,15 +94,20 @@ export const reducer: Reducer<TestState> = (
         ...state,
         amountOfErrors: state.amountOfErrors + 1,
       };
-    case "INCREASE_AMOUNT_OF_CORRECT_ANSWERS": 
+    case "INCREASE_AMOUNT_OF_CORRECT_ANSWERS":
       return {
         ...state,
         amountOfCorrect: state.amountOfCorrect + 1,
       }
-    case "SET_TEST_FINISH_DATE": 
+    case "SET_TEST_FINISH_DATE":
       return {
         ...state,
         dateFinish: action.date,
+      }
+    case "SET_PASSED":
+      return {
+        ...state,
+        isPassed: true,
       }
     default:
       return state;

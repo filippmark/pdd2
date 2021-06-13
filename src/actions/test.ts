@@ -50,6 +50,10 @@ export interface SetTestFinishDate {
   date: Date;
 }
 
+export interface SetPassed {
+  type: "SET_PASSED";
+}
+
 export type knownAction =
   | SetCurrentQuestion
   | AddAnswerToQuestion
@@ -61,7 +65,8 @@ export type knownAction =
   | IncreaseAmountOfErrors
   | SetTestFinished
   | IncreaseAmountOfCorrectAnswers
-  | SetTestFinishDate;
+  | SetTestFinishDate
+  | SetPassed;
 
 export const actionCreators = {
   setCurrentQuestion: (questionNumber: number) => ({
@@ -102,4 +107,8 @@ export const actionCreators = {
     type: 'SET_TEST_FINISH_DATE',
     date,
   }),
+  setPassed: () => ({
+    type: 'SET_PASSED'
+  })
 };
+

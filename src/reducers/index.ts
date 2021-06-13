@@ -11,6 +11,7 @@ import * as SaveUserAnswers from "./saveUserAnswers";
 import * as QuestionsRandom from './questions10Random';
 import * as QuestionsPersonalised from './questionsPersonalised';
 import * as QuestionsTopicsControl from './questionsByTopicForControl';
+import * as PassedControls from './passedControls';
 
 export interface ApplicationState {
   signIn: SignIn.SignInState;
@@ -26,6 +27,7 @@ export interface ApplicationState {
   questionsRandomControl: QuestionsRandomControl.QuestionsRandomControlState;
   questionsPersonalised: QuestionsPersonalised.QuestionsPersonalisedState,
   saveUserAnswers: SaveUserAnswers.SaveUserAnswersState;
+  passedControls: PassedControls.QuestionsPassedState;
 }
 
 export const reducers = {
@@ -41,5 +43,6 @@ export const reducers = {
   questionsRandom: QuestionsRandom.reducer,
   questionsRandomControl: QuestionsRandomControl.reducer,
   questionsPersonalised: QuestionsPersonalised.reducer,
-  saveUserAnswers: SaveUserAnswers.reducer
+  saveUserAnswers: SaveUserAnswers.reducer,
+  passedControls: PassedControls.reducer,
 };

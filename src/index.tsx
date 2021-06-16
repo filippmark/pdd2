@@ -17,8 +17,9 @@ import { initialState as questionsRandomControlInit } from "./reducers/questions
 import { initialState as saveUserAnswersInit } from "./reducers/saveUserAnswers";
 import { initialState as questionsRandom } from './reducers/questions10Random';
 import { initialState as questionsPersonalised } from './reducers/questionsPersonalised';
-import {initialState as quetionsTopicsControl} from './reducers/questionsByTopicForControl';
+import { initialState as quetionsTopicsControl } from './reducers/questionsByTopicForControl';
 import { initialState as passedControls } from './reducers/passedControls';
+import { initialState as profile } from './reducers/profile';
 import configureStore from "./reducers/configStore";
 
 export const store = configureStore({
@@ -36,6 +37,7 @@ export const store = configureStore({
   questionsPersonalised,
   quetionsTopicsControl,
   passedControls,
+  profile,
 });
 
 ReactDOM.render(

@@ -12,6 +12,7 @@ import * as QuestionsRandom from './questions10Random';
 import * as QuestionsPersonalised from './questionsPersonalised';
 import * as QuestionsTopicsControl from './questionsByTopicForControl';
 import * as PassedControls from './passedControls';
+import * as Profile from './profile';
 
 export interface ApplicationState {
   signIn: SignIn.SignInState;
@@ -28,6 +29,7 @@ export interface ApplicationState {
   questionsPersonalised: QuestionsPersonalised.QuestionsPersonalisedState,
   saveUserAnswers: SaveUserAnswers.SaveUserAnswersState;
   passedControls: PassedControls.QuestionsPassedState;
+  profile: Profile.ProfileState;
 }
 
 export const reducers = {
@@ -45,4 +47,5 @@ export const reducers = {
   questionsPersonalised: QuestionsPersonalised.reducer,
   saveUserAnswers: SaveUserAnswers.reducer,
   passedControls: PassedControls.reducer,
+  profile: Profile.reducer,
 };

@@ -21,7 +21,7 @@ export const Profile = (props: any) => {
 
     useEffect(() => {
         dispatch(actionCreators.getPercent());
-    })
+    }, [dispatch])
 
 
     const navigateToHistory = () => {
@@ -36,8 +36,8 @@ export const Profile = (props: any) => {
             <div className="d-flex flex-column justify-content-center">
                 <div className="pt-4 mx-auto" style={{ width: 150, height: 150 }}>
                     <CircularProgressbar
-                        value={66}
-                        text={`${66}%`}
+                        value={percent}
+                        text={`${percent}%`}
                         circleRatio={0.75}
                         styles={buildStyles({
                             rotation: 1 / 2 + 1 / 8,
@@ -48,7 +48,7 @@ export const Profile = (props: any) => {
                 </div>
                 <div className="mx-auto" style={{ width: 150, height: 200 }}>
                     <Button className="mt-5" color="primary" onClick={navigateToHistory}>
-                        Просмотр истории {{ percent }}
+                        Просмотр истории
                     </Button>
                 </div>
             </div>

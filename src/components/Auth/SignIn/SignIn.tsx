@@ -29,7 +29,7 @@ function SignIn() {
   );
 
   const navigateCallback = () => {
-    history.push('/tests');
+    history.push('/profile');
   }
 
   async function signIn(event: React.MouseEvent<any, MouseEvent>) {

@@ -46,7 +46,7 @@ export const actionCreators = {
         }));
         dispatch({
           type: "PASSED_QUESTIONS_RECEIVE",
-          topics,
+          topics: topics.reverse(),
         });
       } catch (error) {
         console.log(error);

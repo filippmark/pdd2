@@ -5,6 +5,7 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { ApplicationState } from "../../../reducers";
 import './Result.css';
 import { actionCreators } from '../../../actions/saveUserAnswers';
+import { useMemo } from "react";
 
 export const Result = () => {
     const dispatch = useDispatch();
@@ -47,11 +48,16 @@ export const Result = () => {
         }
     }
 
-    const saveAnswers = async () => {
+    const durationInSeconds = useMemo(() => {
         let durationInSeconds = 0;
         if (endDate && startDate) {
             durationInSeconds = (endDate.getTime() - startDate.getTime()) / 1000;
         }
+        return Math.trunc(durationInSeconds);
+    }, [endDate, startDate]);
+
+    const saveAnswers = async () => {
+
         if (isUserLoggedIn) {
             await dispatch(actionCreators.saveUserAnswers({
                 durationInSeconds,
@@ -94,7 +100,7 @@ export const Result = () => {
                             Затраченное время:
                         </div>
                         <div >
-                            49 с
+                            {durationInSeconds + 1} с.
                         </div>
                     </div>
                 </div>
